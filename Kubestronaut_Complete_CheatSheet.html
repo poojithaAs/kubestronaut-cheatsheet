@@ -1,0 +1,2213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Kubestronaut Complete Cheat Sheet — All 5 Certifications</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',Arial,sans-serif;background:#f7f8fa;color:#1a202c;line-height:1.8;padding:40px 20px}
+  .container{max-width:860px;margin:0 auto}
+  .copy-banner{background:#fffbeb;border:2px dashed #f59e0b;border-radius:10px;padding:12px 20px;margin-bottom:32px;text-align:center;font-size:14px;color:#92400e}
+
+  /* HERO */
+  .hero{text-align:center;padding:50px 20px 40px;margin-bottom:36px;background:linear-gradient(135deg,#0f172a,#1e3a5f,#2B6CB0);border-radius:16px;color:white}
+  .hero h1{font-size:34px;font-weight:800;margin-bottom:8px}
+  .hero .sub{font-size:17px;color:#90cdf4;font-style:italic;margin-bottom:12px}
+  .hero .meta{font-size:13px;color:#a0aec0}
+  .hero .cert-badges{margin-top:16px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+  .hero .cert-badge{background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.3);padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:0.5px}
+
+  /* NAV */
+  .nav{background:white;border-radius:12px;padding:16px 20px;margin-bottom:32px;box-shadow:0 2px 8px rgba(0,0,0,0.06);text-align:center}
+  .nav a{display:inline-block;margin:4px 6px;padding:6px 14px;border-radius:6px;font-size:13px;font-weight:700;color:#2B6CB0;text-decoration:none;background:#EBF4FF;transition:all 0.2s}
+  .nav a:hover{background:#2B6CB0;color:white}
+
+  /* CERT HEADER */
+  .cert-header{padding:28px 24px;border-radius:14px;margin-bottom:28px;color:white;position:relative;overflow:hidden}
+  .cert-header h2{font-size:26px;font-weight:800;margin-bottom:4px}
+  .cert-header .cert-sub{font-size:14px;opacity:0.85;margin-bottom:8px}
+  .cert-header .cert-meta{font-size:12px;opacity:0.7}
+  .cert-header .cert-number{position:absolute;right:24px;top:50%;transform:translateY(-50%);font-size:72px;font-weight:800;opacity:0.1}
+  .kcna-bg{background:linear-gradient(135deg,#6366f1,#8b5cf6)}
+  .kcsa-bg{background:linear-gradient(135deg,#dc2626,#ef4444)}
+  .cka-bg{background:linear-gradient(135deg,#0369a1,#0284c7)}
+  .ckad-bg{background:linear-gradient(135deg,#059669,#10b981)}
+  .cks-bg{background:linear-gradient(135deg,#b45309,#d97706)}
+
+  /* CARDS */
+  .card{background:white;border-radius:14px;padding:26px 28px;margin-bottom:24px;box-shadow:0 3px 10px rgba(0,0,0,0.07)}
+  .card h2{font-size:20px;font-weight:800;color:#1B2838;margin-bottom:10px}
+  .card h3{font-size:16px;font-weight:700;color:#2B6CB0;margin:18px 0 8px}
+  .card h4{font-size:14px;font-weight:700;color:#4a5568;margin:14px 0 6px}
+  .card p{margin-bottom:14px;font-size:15px;color:#2d3748}
+  .card ul{padding-left:18px;margin-bottom:14px}
+  .card li{margin-bottom:6px;font-size:14px;color:#333}
+
+  /* DOMAIN TAG */
+  .domain-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:5px;margin-bottom:10px;letter-spacing:0.5px;color:white}
+
+  /* CALLOUTS */
+  .tip{background:#E8F5E9;border-left:4px solid #1DB954;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .tip strong{color:#1DB954}
+  .warn{background:#fff5f5;border-left:4px solid #e74c3c;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .warn strong{color:#e74c3c}
+  .insight{background:#EBF4FF;border-left:4px solid #2B6CB0;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .insight strong{color:#2B6CB0}
+  .org-example{background:#FFF8E1;border-left:4px solid #FF6F00;padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:14px}
+  .org-example strong{color:#FF6F00}
+  .code{background:#0f172a;color:#e2e8f0;padding:14px 16px;border-radius:8px;font-family:'Courier New',monospace;font-size:12px;overflow-x:auto;margin:12px 0;white-space:pre-wrap;line-height:1.6}
+  .arch{background:#1e293b;color:#94a3b8;padding:16px;border-radius:8px;font-family:'Courier New',monospace;font-size:11px;overflow-x:auto;margin:12px 0;white-space:pre;line-height:1.5}
+
+  /* WEIGHT BAR */
+  .weight-bar{display:flex;align-items:center;margin:6px 0}
+  .weight-bar .bar-label{width:200px;font-size:13px;font-weight:600;color:#333}
+  .weight-bar .bar-track{flex:1;height:22px;background:#e2e8f0;border-radius:6px;overflow:hidden;position:relative}
+  .weight-bar .bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;padding-left:8px;font-size:11px;font-weight:700;color:white}
+
+  /* QUIZ */
+  .quiz{background:#f0f4f8;border-radius:12px;padding:24px 28px;margin:24px 0;border:2px solid #e2e8f0}
+  .quiz h3{font-size:18px;font-weight:800;color:#1B2838;margin-bottom:16px}
+  .quiz-q{margin-bottom:18px}
+  .quiz-q p{font-size:14px;font-weight:700;color:#1B2838;margin-bottom:8px}
+  .quiz-q label{display:block;padding:8px 12px;margin:4px 0;border-radius:6px;font-size:13px;color:#333;cursor:pointer;background:white;border:1px solid #e2e8f0;transition:all 0.2s}
+  .quiz-q label:hover{background:#EBF4FF;border-color:#2B6CB0}
+  .quiz-q input[type="radio"]{margin-right:8px}
+  .quiz-answer{display:none;margin-top:6px;padding:10px 12px;border-radius:6px;font-size:13px;font-weight:600}
+  .quiz-answer.correct{background:#E8F5E9;color:#1DB954;border:1px solid #1DB954}
+  .quiz-answer.wrong{background:#fff5f5;color:#e74c3c;border:1px solid #e74c3c}
+
+  /* SEPARATOR */
+  .cert-sep{border:none;border-top:3px dashed #cbd5e0;margin:48px 0}
+  .section-sep{border:none;border-top:1px solid #e2e8f0;margin:28px 0}
+
+  .footer{text-align:center;padding:30px 20px;color:#718096;font-size:13px}
+  .hashtags{text-align:center;font-size:13px;color:#2B6CB0;font-weight:600;margin:6px 0}
+</style>
+<script>
+function checkAnswer(qId, correct) {
+  const radios = document.querySelectorAll('input[name="'+qId+'"]');
+  radios.forEach(r => {
+    const ansDiv = r.parentElement.nextElementSibling;
+    if(!ansDiv || !ansDiv.classList.contains('quiz-answer')) return;
+    if(r.checked) {
+      if(r.value === correct) {
+        ansDiv.className = 'quiz-answer correct';
+        ansDiv.style.display = 'block';
+      } else {
+        ansDiv.className = 'quiz-answer wrong';
+        ansDiv.style.display = 'block';
+      }
+    }
+  });
+}
+function revealAnswer(qId, correct, explanation) {
+  const container = document.getElementById(qId+'-result');
+  if(container) {
+    container.innerHTML = '<strong>Answer: '+correct+'</strong><br>'+explanation;
+    container.style.display = 'block';
+    container.className = 'quiz-answer correct';
+  }
+}
+</script>
+</head>
+<body>
+<div class="container">
+
+<div class="copy-banner"><strong>Cmd+A &rarr; Cmd+C &rarr; Paste into Google Docs</strong></div>
+
+<!-- ============================================ -->
+<!-- HERO -->
+<!-- ============================================ -->
+<div class="hero">
+  <h1>Kubestronaut Complete Cheat Sheet</h1>
+  <div class="sub">All 5 Certifications. Every Chapter. Real-World Examples. Commands. Quizzes.</div>
+  <div class="meta">By Poojitha A S &nbsp;|&nbsp; DevOps Made Simple &nbsp;|&nbsp; April 2026</div>
+  <div class="cert-badges">
+    <span class="cert-badge">1. KCNA</span>
+    <span class="cert-badge">2. KCSA</span>
+    <span class="cert-badge">3. CKA</span>
+    <span class="cert-badge">4. CKAD</span>
+    <span class="cert-badge">5. CKS</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <strong>Jump to:</strong>
+  <a href="#kcna">KCNA</a>
+  <a href="#kcsa">KCSA</a>
+  <a href="#cka">CKA</a>
+  <a href="#ckad">CKAD</a>
+  <a href="#cks">CKS</a>
+</div>
+
+<!-- ============================================ -->
+<!-- ROADMAP -->
+<!-- ============================================ -->
+<div class="card">
+  <h2>The Kubestronaut Roadmap</h2>
+  <p>All 5 must be active simultaneously. Recommended order:</p>
+  <div class="arch">
+  KCNA (Entry) ──▶ KCSA (Security Basics) ──▶ CKA (Admin) ──▶ CKAD (Developer) ──▶ CKS (Security Pro)
+   Multiple          Multiple Choice           Hands-On        Hands-On           Hands-On
+   Choice            90 min                    2 hrs           2 hrs              2 hrs
+   90 min            66% pass                  66% pass        66% pass           67% pass
+   75% pass
+  </div>
+  <div class="org-example"><strong>In your org:</strong> Think of it like this — KCNA proves you understand the map. KCSA proves you can spot the dangers on it. CKA proves you can build the roads. CKAD proves you can drive on them. CKS proves you can lock them down.</div>
+</div>
+
+<!-- ============================================ -->
+<!--                                              -->
+<!-- ████  CERT 1: KCNA  ████                     -->
+<!--                                              -->
+<!-- ============================================ -->
+<div id="kcna"></div>
+<div class="cert-header kcna-bg">
+  <h2>CERT 1: KCNA</h2>
+  <div class="cert-sub">Kubernetes and Cloud Native Associate</div>
+  <div class="cert-meta">Multiple Choice &bull; 90 min &bull; 75% to pass &bull; Entry-level &bull; No prerequisites</div>
+  <div class="cert-number">1</div>
+</div>
+
+<!-- KCNA Domain Weights -->
+<div class="card">
+  <h2>KCNA Exam Domains</h2>
+  <div class="weight-bar"><span class="bar-label">K8s Fundamentals</span><div class="bar-track"><div class="bar-fill" style="width:46%;background:#6366f1">46%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Container Orchestration</span><div class="bar-track"><div class="bar-fill" style="width:22%;background:#8b5cf6">22%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Cloud Native Architecture</span><div class="bar-track"><div class="bar-fill" style="width:16%;background:#a78bfa">16%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Observability</span><div class="bar-track"><div class="bar-fill" style="width:8%;background:#c4b5fd">8%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">App Delivery</span><div class="bar-track"><div class="bar-fill" style="width:8%;background:#ddd6fe">8%</div></div></div>
+</div>
+
+<!-- KCNA Ch1: K8s Fundamentals -->
+<div class="card">
+  <div class="domain-tag" style="background:#6366f1">46% — KUBERNETES FUNDAMENTALS</div>
+  <h2>Chapter 1: Kubernetes Architecture</h2>
+
+  <h3>What is Kubernetes?</h3>
+  <p>Kubernetes (K8s) is a container orchestration platform. Think of it as the operating system for your data center. Instead of manually placing containers on servers, you tell Kubernetes <em>what</em> you want (3 replicas of my app, 512MB each) and it figures out <em>where</em> and <em>how</em>.</p>
+
+  <div class="org-example"><strong>In your org:</strong> Without K8s, your team SSHs into servers, pulls Docker images, manages ports, restarts crashed containers manually. With K8s, you write a YAML file, apply it, and K8s handles placement, scaling, healing, and networking across hundreds of nodes automatically.</div>
+
+  <h3>Control Plane Components</h3>
+  <div class="arch">
+┌─────────────────── CONTROL PLANE ────────────────────┐
+│                                                       │
+│  ┌──────────┐  ┌───────────┐  ┌────────────────────┐│
+│  │ API      │  │ etcd      │  │ Controller Manager ││
+│  │ Server   │◄─│ (key-val  │  │ (watches desired   ││
+│  │ (gateway │  │  store)   │  │  vs actual state)  ││
+│  │  for ALL │  └───────────┘  └────────────────────┘│
+│  │  requests│                                        │
+│  └────┬─────┘  ┌───────────────────────────────────┐│
+│       │        │ Scheduler (assigns pods to nodes) ││
+│       │        └───────────────────────────────────┘│
+└───────┼──────────────────────────────────────────────┘
+        │
+┌───────▼──────────── WORKER NODES ────────────────────┐
+│  ┌─────────┐  ┌────────────┐  ┌──────────────────┐  │
+│  │ kubelet │  │ kube-proxy │  │ Container Runtime│  │
+│  │ (agent) │  │ (network   │  │ (containerd/CRI) │  │
+│  └─────────┘  │  rules)    │  └──────────────────┘  │
+│               └────────────┘                         │
+│  ┌────┐ ┌────┐ ┌────┐ ┌────┐                       │
+│  │Pod │ │Pod │ │Pod │ │Pod │                       │
+│  └────┘ └────┘ └────┘ └────┘                       │
+└──────────────────────────────────────────────────────┘</div>
+
+  <p><strong>API Server:</strong> The front door. Every kubectl command, every controller, every kubelet talks to the API server. It validates requests and writes state to etcd.</p>
+  <p><strong>etcd:</strong> The database. Stores the entire cluster state — every pod, service, secret, configmap. If etcd dies, the cluster loses its memory.</p>
+  <p><strong>Scheduler:</strong> Decides which node runs a new pod. Considers resource requests, affinity rules, taints/tolerations. Think of it as the air traffic controller.</p>
+  <p><strong>Controller Manager:</strong> Runs control loops. The Deployment controller ensures 3 replicas exist. The Node controller marks nodes unhealthy. Each controller watches desired state vs actual state and reconciles.</p>
+  <p><strong>kubelet:</strong> The agent on every worker node. Receives pod specs from the API server, tells the container runtime to start containers, reports health back.</p>
+  <p><strong>kube-proxy:</strong> Handles networking rules on each node so services can route traffic to the right pods.</p>
+
+  <h3>Core Objects</h3>
+  <p><strong>Pod:</strong> The smallest deployable unit. One or more containers that share networking and storage. In practice, most pods have one container. Think of a pod as a wrapper around your container.</p>
+  <p><strong>ReplicaSet:</strong> Ensures N copies of a pod are always running. If one dies, it creates a replacement. You almost never create these directly — Deployments manage them.</p>
+  <p><strong>Deployment:</strong> The most common workload resource. Manages ReplicaSets, handles rolling updates, rollbacks. You define your desired state, the Deployment controller makes it happen.</p>
+  <p><strong>Service:</strong> A stable network endpoint for a set of pods. Pods get random IPs and die/restart constantly. A Service gives you a DNS name (my-app.default.svc.cluster.local) that always routes to healthy pods.</p>
+  <p><strong>Namespace:</strong> A virtual cluster within a cluster. Use namespaces to isolate teams, environments, or projects. Default namespaces: default, kube-system, kube-public, kube-node-lease.</p>
+
+  <div class="code"># Create a deployment with 3 replicas
+kubectl create deployment nginx --image=nginx --replicas=3
+
+# Expose it as a service
+kubectl expose deployment nginx --port=80 --type=ClusterIP
+
+# See everything
+kubectl get all -n default</div>
+
+  <div class="tip"><strong>Exam tip:</strong> 46% of KCNA is K8s fundamentals. Know the control plane components, what each does, and the relationship between Deployments → ReplicaSets → Pods. This is half your exam.</div>
+</div>
+
+<!-- KCNA: ConfigMaps, Secrets, Labels -->
+<div class="card">
+  <div class="domain-tag" style="background:#6366f1">46% — KUBERNETES FUNDAMENTALS</div>
+  <h2>Chapter 2: Configuration & Organization</h2>
+
+  <h3>ConfigMaps</h3>
+  <p>Store non-sensitive configuration data as key-value pairs. Your app reads database hostnames, feature flags, log levels from ConfigMaps instead of hardcoding them.</p>
+  <div class="code"># Create a ConfigMap
+kubectl create configmap app-config \
+  --from-literal=DB_HOST=postgres.prod.svc \
+  --from-literal=LOG_LEVEL=info
+
+# Use in a pod as env vars
+env:
+- name: DB_HOST
+  valueFrom:
+    configMapKeyRef:
+      name: app-config
+      key: DB_HOST</div>
+
+  <h3>Secrets</h3>
+  <p>Like ConfigMaps but for sensitive data — passwords, tokens, TLS certs. Base64 encoded (NOT encrypted by default). In production, enable encryption at rest with EncryptionConfiguration or use an external secrets manager (Vault, AWS Secrets Manager).</p>
+  <div class="code"># Create a secret
+kubectl create secret generic db-creds \
+  --from-literal=password=MyS3cr3t
+
+# Secrets are base64 encoded, NOT encrypted
+# Always enable encryption at rest in production</div>
+
+  <div class="warn"><strong>Common mistake:</strong> Base64 is encoding, not encryption. Anyone with cluster access can decode secrets. For real security: enable etcd encryption at rest + use RBAC to restrict who can read secrets + consider external secret stores.</div>
+
+  <h3>Labels & Selectors</h3>
+  <p>Labels are key-value tags attached to objects. Selectors filter objects by labels. This is how Services find their pods, how Deployments manage ReplicaSets, and how you organize everything.</p>
+  <div class="code"># Label a pod
+kubectl label pod my-pod env=production team=payments
+
+# Select by label
+kubectl get pods -l env=production
+kubectl get pods -l "env=production,team=payments"
+kubectl get pods -l "env in (production,staging)"</div>
+
+  <div class="org-example"><strong>In your org:</strong> Every resource gets labels: app=checkout, env=prod, team=payments, version=v2.1. Your service selects app=checkout to route traffic. Your monitoring uses team=payments to send alerts to the right Slack channel. Labels are the glue of Kubernetes.</div>
+</div>
+
+<!-- KCNA: Container Orchestration -->
+<div class="card">
+  <div class="domain-tag" style="background:#8b5cf6">22% — CONTAINER ORCHESTRATION</div>
+  <h2>Chapter 3: Containers & Container Runtimes</h2>
+
+  <h3>Containers 101</h3>
+  <p>A container packages your app + dependencies into an isolated process. Unlike VMs (which virtualize hardware), containers share the host kernel but isolate using Linux namespaces (process, network, filesystem) and cgroups (CPU, memory limits).</p>
+
+  <div class="arch">
+ VM Approach:                    Container Approach:
+┌──────────────────┐            ┌──────────────────┐
+│   App A  │ App B │            │   App A  │ App B │
+│──────────┼───────│            │──────────┼───────│
+│  Guest OS│GuestOS│            │ Container│Contner│
+│──────────┼───────│            │  Runtime │Runtime│
+│    Hypervisor    │            │──────────────────│
+│──────────────────│            │    Host OS       │
+│    Host OS       │            │──────────────────│
+│──────────────────│            │    Hardware      │
+│    Hardware      │            └──────────────────┘
+└──────────────────┘
+ Heavy, slow boot, GB size       Light, instant, MB size</div>
+
+  <h3>Container Runtime Interface (CRI)</h3>
+  <p>Kubernetes doesn't run containers directly. It talks to a container runtime through the CRI standard. The default runtime is <strong>containerd</strong>. Docker was removed as a runtime in K8s 1.24 (but Docker-built images still work fine — images are OCI standard).</p>
+
+  <h3>Scheduling</h3>
+  <p>The scheduler places pods on nodes based on: resource requests/limits, node selectors, affinity/anti-affinity rules, taints/tolerations, and topology spread constraints.</p>
+  <div class="code"># Node selector: run only on SSD nodes
+spec:
+  nodeSelector:
+    disk: ssd
+
+# Taint a node (only tolerated pods can run here)
+kubectl taint nodes gpu-node-1 gpu=true:NoSchedule
+
+# Toleration in pod spec
+tolerations:
+- key: "gpu"
+  operator: "Equal"
+  value: "true"
+  effect: "NoSchedule"</div>
+
+  <div class="org-example"><strong>In your org:</strong> You taint GPU nodes so only ML workloads run there. You use pod anti-affinity to spread your 3 database replicas across 3 availability zones. You set resource requests so the scheduler never overcommits a node's memory.</div>
+
+  <h3>Networking Basics</h3>
+  <p>K8s networking rules: every pod gets its own IP. Pods on any node can communicate with any other pod without NAT. Services provide stable IPs and DNS names. NetworkPolicies act as firewalls between pods.</p>
+
+  <h3>Storage Basics</h3>
+  <p>Containers are ephemeral — data is lost when the container restarts. For persistent data: PersistentVolumes (PV) represent storage, PersistentVolumeClaims (PVC) request storage, StorageClasses enable dynamic provisioning.</p>
+  <div class="code"># Dynamic provisioning: just create a PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: db-data
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 50Gi
+# K8s automatically creates the underlying EBS/disk</div>
+</div>
+
+<!-- KCNA: Cloud Native Architecture -->
+<div class="card">
+  <div class="domain-tag" style="background:#a78bfa">16% — CLOUD NATIVE ARCHITECTURE</div>
+  <h2>Chapter 4: Cloud Native Architecture & CNCF</h2>
+
+  <h3>What is Cloud Native?</h3>
+  <p>Cloud native = building apps that fully exploit cloud advantages: containers for packaging, orchestration for management, microservices for modularity, CI/CD for speed, observability for insight. It's not just "running in the cloud" — it's designing for the cloud.</p>
+
+  <h3>Microservices vs Monolith</h3>
+  <p><strong>Monolith:</strong> One codebase, one deployment, one database. Simple to start, hard to scale individual components. A bug in the checkout module can crash the entire app.</p>
+  <p><strong>Microservices:</strong> Each feature is an independent service with its own database, deployed independently. The checkout service can scale to 10 replicas during Black Friday while the profile service stays at 2.</p>
+
+  <div class="org-example"><strong>In your org:</strong> You start with a monolith (fast to build). When it gets too big to deploy safely, you extract the highest-traffic components into microservices first. Not everything needs to be a microservice — extract when you have a reason (scaling, independent deployment, different tech stack).</div>
+
+  <h3>Serverless</h3>
+  <p>Functions that run on demand. No servers to manage. You pay per execution. AWS Lambda, Google Cloud Functions, Knative (on K8s). Great for event-driven tasks: image processing, webhooks, scheduled jobs. Bad for long-running processes or anything needing persistent connections.</p>
+
+  <h3>The CNCF Landscape</h3>
+  <p>The Cloud Native Computing Foundation (CNCF) hosts 170+ projects. Know these key graduated projects for the exam:</p>
+  <ul>
+    <li><strong>Kubernetes</strong> — container orchestration</li>
+    <li><strong>Prometheus</strong> — metrics and alerting</li>
+    <li><strong>Envoy</strong> — service proxy (used by Istio)</li>
+    <li><strong>Helm</strong> — package manager for K8s</li>
+    <li><strong>containerd</strong> — container runtime</li>
+    <li><strong>Argo</strong> — GitOps and workflows</li>
+    <li><strong>Flux</strong> — GitOps continuous delivery</li>
+    <li><strong>OpenTelemetry</strong> — observability framework</li>
+  </ul>
+
+  <h3>Service Mesh</h3>
+  <p>A dedicated infrastructure layer for service-to-service communication. Handles mTLS encryption, traffic routing, retries, circuit breaking — without changing your app code. Istio and Linkerd are the two main choices. The sidecar proxy (Envoy) sits next to each pod and handles all network traffic.</p>
+  <div class="arch">
+  Without Service Mesh:           With Service Mesh (Istio):
+  ┌───────┐   ┌───────┐          ┌───────────────┐   ┌───────────────┐
+  │ App A ├──▶│ App B │          │ App A │ Envoy ├──▶│ Envoy │ App B │
+  └───────┘   └───────┘          └───────┼───────┘   └───────┼───────┘
+  (plain HTTP, no encryption,            │ mTLS, retries,    │
+   no retries, no observability)         │ tracing, metrics  │
+                                         └──── Control Plane ┘</div>
+</div>
+
+<!-- KCNA: Observability -->
+<div class="card">
+  <div class="domain-tag" style="background:#c4b5fd">8% — CLOUD NATIVE OBSERVABILITY</div>
+  <h2>Chapter 5: Observability</h2>
+
+  <h3>The Three Pillars</h3>
+  <p><strong>Logs:</strong> Event records. "User 123 logged in at 14:02." Structured JSON logs are searchable; plain text logs are not. Tools: Fluentd/Fluent Bit → Elasticsearch/Loki.</p>
+  <p><strong>Metrics:</strong> Numeric measurements over time. "CPU usage is 73%." "Request latency p99 is 200ms." Tools: Prometheus for collection, Grafana for visualization.</p>
+  <p><strong>Traces:</strong> Follow a single request across multiple services. "This API call took 340ms — 200ms in the payment service, 100ms in the database, 40ms in the gateway." Tools: OpenTelemetry, Jaeger, Zipkin.</p>
+
+  <div class="org-example"><strong>In your org:</strong> Your monitoring stack: Prometheus scrapes metrics from every pod → Grafana dashboards show real-time health → Alertmanager pages your on-call when p99 latency exceeds 500ms → Loki stores logs → Jaeger shows traces. OpenTelemetry is the standard SDK that instruments your apps to emit all three.</div>
+
+  <h3>Prometheus Architecture</h3>
+  <div class="code"># Prometheus scrapes /metrics endpoints from pods
+# Example metrics endpoint output:
+http_requests_total{method="GET",status="200"} 1543
+http_request_duration_seconds_bucket{le="0.1"} 892
+process_resident_memory_bytes 52428800
+
+# PromQL query: request rate over 5 minutes
+rate(http_requests_total[5m])</div>
+</div>
+
+<!-- KCNA: App Delivery -->
+<div class="card">
+  <div class="domain-tag" style="background:#ddd6fe;color:#333">8% — CLOUD NATIVE APPLICATION DELIVERY</div>
+  <h2>Chapter 6: Application Delivery & GitOps</h2>
+
+  <h3>CI/CD Pipeline</h3>
+  <p><strong>Continuous Integration (CI):</strong> Every code push triggers: build → test → scan → create container image → push to registry.</p>
+  <p><strong>Continuous Delivery (CD):</strong> After CI passes, automatically deploy to staging. Manual approval for production. Continuous Deployment = auto-deploy to production too.</p>
+
+  <h3>GitOps</h3>
+  <p>Git is the single source of truth for infrastructure and app state. Instead of running <code>kubectl apply</code> manually, you commit YAML to Git, and a GitOps operator (ArgoCD or Flux) syncs the cluster to match. If someone makes a manual change, the operator reverts it.</p>
+
+  <div class="arch">
+  Developer pushes code
+       │
+       ▼
+  CI Pipeline (GitHub Actions / GitLab CI)
+  ├── Build container image
+  ├── Run tests
+  ├── Push image to registry (tag: v2.3.1)
+  └── Update image tag in GitOps repo
+       │
+       ▼
+  GitOps Repo (desired state in Git)
+       │
+       ▼
+  ArgoCD / Flux (watches Git, syncs to cluster)
+       │
+       ▼
+  Kubernetes Cluster (actual state matches Git)</div>
+
+  <h3>Helm</h3>
+  <p>The package manager for Kubernetes. A Helm chart is a templated bundle of K8s manifests. Instead of copying 20 YAML files for each environment, you use one chart with variables.</p>
+  <div class="code"># Install a chart
+helm install my-app ./my-chart --values production.yaml
+
+# Upgrade
+helm upgrade my-app ./my-chart --values production.yaml
+
+# Rollback
+helm rollback my-app 1</div>
+
+  <div class="tip"><strong>Exam tip:</strong> Know the difference between CI and CD, what GitOps is, the purpose of Helm, and the names of key tools (ArgoCD, Flux, Helm, Kustomize). You don't need to know syntax — this is a conceptual exam.</div>
+</div>
+
+<!-- KCNA QUIZ -->
+<div class="quiz" id="kcna-quiz">
+  <h3>KCNA Quiz — 10 Questions</h3>
+
+  <div class="quiz-q">
+    <p>1. Which control plane component stores all cluster state?</p>
+    <label><input type="radio" name="kcna1" value="a"> API Server</label>
+    <label><input type="radio" name="kcna1" value="b"> etcd</label>
+    <label><input type="radio" name="kcna1" value="c"> Controller Manager</label>
+    <label><input type="radio" name="kcna1" value="d"> Scheduler</label>
+    <button onclick="revealAnswer('kcna1','B — etcd','etcd is the key-value store that holds the entire cluster state. The API server reads/writes to etcd. If etcd dies, the cluster loses its memory.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna1-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. What does the Scheduler do?</p>
+    <label><input type="radio" name="kcna2" value="a"> Routes network traffic to pods</label>
+    <label><input type="radio" name="kcna2" value="b"> Decides which node runs a new pod</label>
+    <label><input type="radio" name="kcna2" value="c"> Manages container images</label>
+    <label><input type="radio" name="kcna2" value="d"> Stores secrets</label>
+    <button onclick="revealAnswer('kcna2','B — Decides which node runs a new pod','The scheduler evaluates resource requests, affinity rules, taints/tolerations to place pods on the best-fit node.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna2-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. Docker was removed as a container runtime in K8s 1.24. Can you still use Docker-built images?</p>
+    <label><input type="radio" name="kcna3" value="a"> No, you must rebuild with containerd</label>
+    <label><input type="radio" name="kcna3" value="b"> Yes, images follow OCI standard and work with any runtime</label>
+    <label><input type="radio" name="kcna3" value="c"> Only if you install a compatibility layer</label>
+    <label><input type="radio" name="kcna3" value="d"> Only for Linux containers</label>
+    <button onclick="revealAnswer('kcna3','B — Yes, OCI standard','Docker images follow the OCI (Open Container Initiative) standard. containerd, CRI-O, and any OCI-compliant runtime runs them. Only the Docker shim was removed.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna3-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. What is a Service in Kubernetes?</p>
+    <label><input type="radio" name="kcna4" value="a"> A running container instance</label>
+    <label><input type="radio" name="kcna4" value="b"> A stable network endpoint that routes traffic to a set of pods</label>
+    <label><input type="radio" name="kcna4" value="c"> A configuration file for deployments</label>
+    <label><input type="radio" name="kcna4" value="d"> A monitoring agent</label>
+    <button onclick="revealAnswer('kcna4','B — Stable network endpoint','Pods get random IPs and die/restart. Services give a stable DNS name and IP that always routes to healthy pods matching the label selector.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna4-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. What is GitOps?</p>
+    <label><input type="radio" name="kcna5" value="a"> Using GitHub Actions for CI</label>
+    <label><input type="radio" name="kcna5" value="b"> Git as the single source of truth for infrastructure state, with operators syncing cluster to match</label>
+    <label><input type="radio" name="kcna5" value="c"> Storing Git credentials in Kubernetes secrets</label>
+    <label><input type="radio" name="kcna5" value="d"> Running Git inside containers</label>
+    <button onclick="revealAnswer('kcna5','B — Git as single source of truth','GitOps means desired state lives in Git. Tools like ArgoCD/Flux continuously reconcile the cluster to match what is in Git. Manual changes get reverted.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna5-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. Which are the three pillars of observability?</p>
+    <label><input type="radio" name="kcna6" value="a"> CPU, Memory, Disk</label>
+    <label><input type="radio" name="kcna6" value="b"> Logs, Metrics, Traces</label>
+    <label><input type="radio" name="kcna6" value="c"> Prometheus, Grafana, Alertmanager</label>
+    <label><input type="radio" name="kcna6" value="d"> Pods, Services, Ingress</label>
+    <button onclick="revealAnswer('kcna6','B — Logs, Metrics, Traces','Logs = event records. Metrics = numbers over time. Traces = follow a request across services. Prometheus, Grafana, Jaeger are tools — not pillars.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna6-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. What does a sidecar proxy do in a service mesh?</p>
+    <label><input type="radio" name="kcna7" value="a"> Stores data for the main container</label>
+    <label><input type="radio" name="kcna7" value="b"> Intercepts all network traffic for mTLS, retries, and observability without app code changes</label>
+    <label><input type="radio" name="kcna7" value="c"> Runs database migrations</label>
+    <label><input type="radio" name="kcna7" value="d"> Manages container images</label>
+    <button onclick="revealAnswer('kcna7','B — Intercepts network traffic','The Envoy sidecar sits next to your app container, handles mTLS encryption, retries, circuit breaking, and emits telemetry — all transparently.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna7-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. What is a Helm chart?</p>
+    <label><input type="radio" name="kcna8" value="a"> A monitoring dashboard</label>
+    <label><input type="radio" name="kcna8" value="b"> A templated bundle of Kubernetes manifests that can be installed as a package</label>
+    <label><input type="radio" name="kcna8" value="c"> A security scanning tool</label>
+    <label><input type="radio" name="kcna8" value="d"> A container image format</label>
+    <button onclick="revealAnswer('kcna8','B — Templated bundle of K8s manifests','Helm charts package K8s YAML with variables. Install a complex app (PostgreSQL, Redis, etc.) with one command. Override values per environment.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna8-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. What's the difference between a ConfigMap and a Secret?</p>
+    <label><input type="radio" name="kcna9" value="a"> ConfigMaps are encrypted, Secrets are not</label>
+    <label><input type="radio" name="kcna9" value="b"> Secrets are base64 encoded and meant for sensitive data; ConfigMaps store non-sensitive config</label>
+    <label><input type="radio" name="kcna9" value="c"> There is no difference</label>
+    <label><input type="radio" name="kcna9" value="d"> ConfigMaps can only store files, Secrets store key-value pairs</label>
+    <button onclick="revealAnswer('kcna9','B — Secrets for sensitive data, ConfigMaps for non-sensitive','Both store key-value data. Secrets are base64 encoded (not encrypted by default!) and meant for passwords/tokens. ConfigMaps for hostnames, feature flags, etc.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna9-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. In microservices architecture, what's the main advantage over a monolith?</p>
+    <label><input type="radio" name="kcna10" value="a"> Less code to write</label>
+    <label><input type="radio" name="kcna10" value="b"> Independent scaling and deployment of individual services</label>
+    <label><input type="radio" name="kcna10" value="c"> No need for networking</label>
+    <label><input type="radio" name="kcna10" value="d"> Automatic security</label>
+    <button onclick="revealAnswer('kcna10','B — Independent scaling and deployment','Each service scales, deploys, and fails independently. The checkout service can get 10 replicas during sales while the profile service stays at 2.')">Show Answer</button>
+    <div class="quiz-answer" id="kcna10-result"></div>
+  </div>
+</div>
+
+<hr class="cert-sep">
+
+<!-- ============================================ -->
+<!--                                              -->
+<!-- ████  CERT 2: KCSA  ████                     -->
+<!--                                              -->
+<!-- ============================================ -->
+<div id="kcsa"></div>
+<div class="cert-header kcsa-bg">
+  <h2>CERT 2: KCSA</h2>
+  <div class="cert-sub">Kubernetes and Cloud Native Security Associate</div>
+  <div class="cert-meta">Multiple Choice &bull; 90 min &bull; 66% to pass &bull; Security fundamentals</div>
+  <div class="cert-number">2</div>
+</div>
+
+<div class="card">
+  <h2>KCSA Exam Domains</h2>
+  <div class="weight-bar"><span class="bar-label">Security Fundamentals</span><div class="bar-track"><div class="bar-fill" style="width:22%;background:#dc2626">22%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">K8s Cluster Security</span><div class="bar-track"><div class="bar-fill" style="width:22%;background:#ef4444">22%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Platform Security</span><div class="bar-track"><div class="bar-fill" style="width:16%;background:#f87171">16%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Compliance &amp; Frameworks</span><div class="bar-track"><div class="bar-fill" style="width:18%;background:#fca5a5">18%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Cloud Native Security</span><div class="bar-track"><div class="bar-fill" style="width:22%;background:#fecaca;color:#333">22%</div></div></div>
+</div>
+
+<!-- KCSA: 4Cs of Security -->
+<div class="card">
+  <div class="domain-tag" style="background:#dc2626">SECURITY FUNDAMENTALS</div>
+  <h2>Chapter 1: The 4Cs of Cloud Native Security</h2>
+
+  <p>Security works in layers — each layer protects the one inside it. If the outer layer is breached, inner layers must still hold.</p>
+
+  <div class="arch">
+┌──────────────────────────────────────────────┐
+│                  CLOUD                        │
+│  (AWS/GCP/Azure security: IAM, VPC, SGs)     │
+│  ┌──────────────────────────────────────────┐│
+│  │              CLUSTER                      ││
+│  │  (K8s: RBAC, NetworkPolicy, PodSecurity) ││
+│  │  ┌──────────────────────────────────────┐││
+│  │  │           CONTAINER                   │││
+│  │  │  (Image scanning, read-only FS,       │││
+│  │  │   non-root, minimal base image)       │││
+│  │  │  ┌──────────────────────────────────┐│││
+│  │  │  │            CODE                   ││││
+│  │  │  │  (Input validation, SAST, deps)  ││││
+│  │  │  └──────────────────────────────────┘│││
+│  │  └──────────────────────────────────────┘││
+│  └──────────────────────────────────────────┘│
+└──────────────────────────────────────────────┘</div>
+
+  <div class="org-example"><strong>In your org:</strong> Cloud = your AWS account has VPCs, security groups, IAM roles. Cluster = RBAC limits who can do what in K8s. Container = your Dockerfile runs as non-root with a minimal base image. Code = your app validates all input and your CI runs SAST scanners. A breach at the cloud layer doesn't mean game over IF your cluster, container, and code layers are solid.</div>
+</div>
+
+<!-- KCSA: RBAC -->
+<div class="card">
+  <div class="domain-tag" style="background:#ef4444">KUBERNETES CLUSTER SECURITY</div>
+  <h2>Chapter 2: RBAC (Role-Based Access Control)</h2>
+
+  <p>RBAC controls who can do what in your cluster. Four objects work together:</p>
+  <p><strong>Role:</strong> A set of permissions (get, list, create, delete) on resources (pods, services, secrets) within a namespace.</p>
+  <p><strong>ClusterRole:</strong> Same as Role but cluster-wide (all namespaces + non-namespaced resources like nodes).</p>
+  <p><strong>RoleBinding:</strong> Connects a Role to a user/group/service account within a namespace.</p>
+  <p><strong>ClusterRoleBinding:</strong> Connects a ClusterRole to a user/group cluster-wide.</p>
+
+  <div class="code"># Role: allow read-only access to pods in "production" namespace
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: production
+  name: pod-reader
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["get", "list", "watch"]
+---
+# RoleBinding: give "dev-team" this role
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dev-team-pod-reader
+  namespace: production
+subjects:
+- kind: Group
+  name: dev-team
+roleRef:
+  kind: Role
+  name: pod-reader
+  apiGroup: rbac.authorization.k8s.io</div>
+
+  <div class="tip"><strong>Principle of least privilege:</strong> Give only the permissions needed, nothing more. Developers get read access to production, write access to staging. CI/CD service accounts get deploy permissions only to their namespace. Nobody gets cluster-admin except the platform team — and even then, use it sparingly.</div>
+</div>
+
+<!-- KCSA: Network Policies, Pod Security -->
+<div class="card">
+  <div class="domain-tag" style="background:#ef4444">KUBERNETES CLUSTER SECURITY</div>
+  <h2>Chapter 3: Network Policies & Pod Security</h2>
+
+  <h3>Network Policies</h3>
+  <p>By default, all pods can talk to all pods. Network Policies are firewalls between pods. They use label selectors to define allowed ingress (incoming) and egress (outgoing) traffic.</p>
+
+  <div class="code"># Deny all ingress to pods in "production" namespace
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: deny-all-ingress
+  namespace: production
+spec:
+  podSelector: {}    # all pods in namespace
+  policyTypes: [Ingress]
+  # no ingress rules = deny all incoming traffic
+
+---
+# Allow only frontend to talk to backend on port 8080
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend-to-backend
+  namespace: production
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: frontend
+    ports:
+    - port: 8080</div>
+
+  <h3>Pod Security Standards (PSS)</h3>
+  <p>Three levels that restrict what pods can do:</p>
+  <ul>
+    <li><strong>Privileged:</strong> No restrictions. Used for system-level pods (CNI plugins, monitoring agents).</li>
+    <li><strong>Baseline:</strong> Blocks known privilege escalations. Prevents hostNetwork, hostPID, privileged containers. Good default for most workloads.</li>
+    <li><strong>Restricted:</strong> Maximum security. Must run as non-root, read-only root filesystem, drop all capabilities. Use for sensitive workloads.</li>
+  </ul>
+
+  <div class="code"># Enforce restricted security on a namespace
+kubectl label namespace production \
+  pod-security.kubernetes.io/enforce=restricted \
+  pod-security.kubernetes.io/warn=restricted \
+  pod-security.kubernetes.io/audit=restricted</div>
+
+  <div class="org-example"><strong>In your org:</strong> Start with baseline enforcement on all namespaces. Warn on restricted so devs see what they'd need to fix. Exempt kube-system (system pods need elevated privileges). Gradually move to restricted for production workloads.</div>
+</div>
+
+<!-- KCSA: Supply Chain & Platform Security -->
+<div class="card">
+  <div class="domain-tag" style="background:#f87171">PLATFORM SECURITY</div>
+  <h2>Chapter 4: Supply Chain & Image Security</h2>
+
+  <h3>Image Security Best Practices</h3>
+  <ul>
+    <li><strong>Use minimal base images:</strong> distroless or alpine. Fewer packages = fewer vulnerabilities.</li>
+    <li><strong>Scan images in CI:</strong> Trivy, Grype, or Snyk scan for CVEs before pushing to registry.</li>
+    <li><strong>Sign images:</strong> Cosign/Sigstore signs images so you can verify they haven't been tampered with.</li>
+    <li><strong>Use image digests, not tags:</strong> <code>nginx@sha256:abc123</code> is immutable. <code>nginx:latest</code> can change under you.</li>
+    <li><strong>Private registries only:</strong> Don't pull from public Docker Hub in production. Mirror to your private registry.</li>
+  </ul>
+
+  <div class="code"># Scan image for vulnerabilities
+trivy image my-app:v2.1.0
+
+# Sign image with Cosign
+cosign sign --key cosign.key my-registry/my-app:v2.1.0
+
+# Verify before deploying
+cosign verify --key cosign.pub my-registry/my-app:v2.1.0</div>
+
+  <h3>Admission Controllers</h3>
+  <p>Gatekeepers that intercept API requests before objects are created. Use them to enforce policies: no latest tags, images must come from approved registries, pods must have resource limits.</p>
+  <p>Tools: OPA Gatekeeper, Kyverno (simpler, K8s-native policies).</p>
+</div>
+
+<!-- KCSA: Compliance -->
+<div class="card">
+  <div class="domain-tag" style="background:#fca5a5;color:#333">COMPLIANCE & FRAMEWORKS</div>
+  <h2>Chapter 5: Compliance & Threat Modeling</h2>
+
+  <h3>Key Frameworks</h3>
+  <ul>
+    <li><strong>CIS Benchmarks:</strong> Checklist of security configurations for K8s. Run <code>kube-bench</code> to audit your cluster against CIS standards automatically.</li>
+    <li><strong>NIST:</strong> Framework for managing cybersecurity risk (Identify, Protect, Detect, Respond, Recover).</li>
+    <li><strong>SOC 2:</strong> Audit standard for cloud services. Your K8s security practices feed into SOC 2 compliance.</li>
+    <li><strong>PCI DSS:</strong> Payment card data security. If your cluster processes payments, network segmentation, encryption, and access controls are mandatory.</li>
+  </ul>
+
+  <h3>Threat Modeling: STRIDE</h3>
+  <ul>
+    <li><strong>S</strong>poofing — Fake identity → Fix: strong authentication (mTLS, OIDC)</li>
+    <li><strong>T</strong>ampering — Modified data → Fix: image signing, admission controllers</li>
+    <li><strong>R</strong>epudiation — Deny actions → Fix: audit logging</li>
+    <li><strong>I</strong>nformation Disclosure — Data leak → Fix: encryption, RBAC, secrets management</li>
+    <li><strong>D</strong>enial of Service — Resource exhaustion → Fix: resource limits, rate limiting</li>
+    <li><strong>E</strong>levation of Privilege — Gain admin access → Fix: least privilege RBAC, PSS</li>
+  </ul>
+
+  <div class="code"># Run CIS benchmark audit
+kube-bench run --targets master,node
+
+# Example output:
+# [PASS] 1.1.1 Ensure API server pod spec permissions are set to 600
+# [FAIL] 1.2.6 Ensure --kubelet-certificate-authority is set
+# [WARN] 1.2.16 Ensure admission control plugin PodSecurity is set</div>
+</div>
+
+<!-- KCSA QUIZ -->
+<div class="quiz">
+  <h3>KCSA Quiz — 10 Questions</h3>
+
+  <div class="quiz-q">
+    <p>1. What are the 4Cs of Cloud Native Security (outer to inner)?</p>
+    <label><input type="radio" name="kcsa1" value="a"> Code, Container, Cluster, Cloud</label>
+    <label><input type="radio" name="kcsa1" value="b"> Cloud, Cluster, Container, Code</label>
+    <label><input type="radio" name="kcsa1" value="c"> Compute, Connect, Control, Compliance</label>
+    <label><input type="radio" name="kcsa1" value="d"> Create, Configure, Certify, Cleanup</label>
+    <button onclick="revealAnswer('kcsa1','B — Cloud, Cluster, Container, Code','From outermost to innermost: Cloud (infrastructure) → Cluster (K8s) → Container (images) → Code (application). Each layer protects the next.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa1-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. What's the difference between a Role and a ClusterRole?</p>
+    <label><input type="radio" name="kcsa2" value="a"> Roles are for users, ClusterRoles are for service accounts</label>
+    <label><input type="radio" name="kcsa2" value="b"> Roles are namespace-scoped, ClusterRoles are cluster-wide</label>
+    <label><input type="radio" name="kcsa2" value="c"> ClusterRoles have more permissions by default</label>
+    <label><input type="radio" name="kcsa2" value="d"> There is no difference</label>
+    <button onclick="revealAnswer('kcsa2','B — Namespace-scoped vs cluster-wide','Roles apply within a single namespace. ClusterRoles apply across all namespaces and can also cover non-namespaced resources like nodes.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa2-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. By default, can all pods talk to all other pods in a cluster?</p>
+    <label><input type="radio" name="kcsa3" value="a"> No, traffic is blocked by default</label>
+    <label><input type="radio" name="kcsa3" value="b"> Yes, all pod-to-pod traffic is allowed by default</label>
+    <label><input type="radio" name="kcsa3" value="c"> Only within the same namespace</label>
+    <label><input type="radio" name="kcsa3" value="d"> Only if a Service exists</label>
+    <button onclick="revealAnswer('kcsa3','B — Yes, all traffic allowed by default','K8s has a flat network — all pods can reach all pods. You must create NetworkPolicies to restrict traffic. This is why deny-all policies are a best practice.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa3-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. Which Pod Security Standard is the most restrictive?</p>
+    <label><input type="radio" name="kcsa4" value="a"> Privileged</label>
+    <label><input type="radio" name="kcsa4" value="b"> Baseline</label>
+    <label><input type="radio" name="kcsa4" value="c"> Restricted</label>
+    <label><input type="radio" name="kcsa4" value="d"> Hardened</label>
+    <button onclick="revealAnswer('kcsa4','C — Restricted','Privileged = no restrictions. Baseline = blocks known escalations. Restricted = maximum lockdown (non-root, read-only FS, drop all capabilities).')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa4-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. Why use image digests instead of tags in production?</p>
+    <label><input type="radio" name="kcsa5" value="a"> Digests are faster to pull</label>
+    <label><input type="radio" name="kcsa5" value="b"> Digests are immutable — tags can be overwritten, pointing to different images</label>
+    <label><input type="radio" name="kcsa5" value="c"> Tags don't work in Kubernetes</label>
+    <label><input type="radio" name="kcsa5" value="d"> Digests compress the image</label>
+    <button onclick="revealAnswer('kcsa5','B — Digests are immutable','A tag like :latest or :v2 can be overwritten. A digest (sha256:abc...) is a hash of the image content — it cannot change. This prevents supply chain attacks.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa5-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. What does STRIDE stand for in threat modeling?</p>
+    <label><input type="radio" name="kcsa6" value="a"> Security, Testing, Risk, Identity, Detection, Encryption</label>
+    <label><input type="radio" name="kcsa6" value="b"> Spoofing, Tampering, Repudiation, Information Disclosure, DoS, Elevation of Privilege</label>
+    <label><input type="radio" name="kcsa6" value="c"> Scan, Test, Review, Implement, Deploy, Evaluate</label>
+    <label><input type="radio" name="kcsa6" value="d"> Source, Transport, Registry, Image, Deployment, Endpoint</label>
+    <button onclick="revealAnswer('kcsa6','B — Spoofing, Tampering, Repudiation, Info Disclosure, DoS, Elevation of Privilege','STRIDE is a threat modeling framework. Each letter represents a category of attack. For each, you identify countermeasures in your K8s environment.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa6-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. What tool audits your cluster against CIS Benchmarks?</p>
+    <label><input type="radio" name="kcsa7" value="a"> Trivy</label>
+    <label><input type="radio" name="kcsa7" value="b"> kube-bench</label>
+    <label><input type="radio" name="kcsa7" value="c"> Falco</label>
+    <label><input type="radio" name="kcsa7" value="d"> Cosign</label>
+    <button onclick="revealAnswer('kcsa7','B — kube-bench','kube-bench runs the CIS Kubernetes Benchmark checks. Trivy scans images. Falco does runtime detection. Cosign signs images.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa7-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. What does an Admission Controller do?</p>
+    <label><input type="radio" name="kcsa8" value="a"> Authenticates users</label>
+    <label><input type="radio" name="kcsa8" value="b"> Intercepts API requests after authentication/authorization to enforce policies before objects are created</label>
+    <label><input type="radio" name="kcsa8" value="c"> Manages DNS records</label>
+    <label><input type="radio" name="kcsa8" value="d"> Schedules pods on nodes</label>
+    <button onclick="revealAnswer('kcsa8','B — Intercepts API requests to enforce policies','Admission controllers are the last gate before an object is persisted. They can mutate (add labels, inject sidecars) or validate (reject if no resource limits).')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa8-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. Which tool is simpler for K8s-native policy enforcement: OPA Gatekeeper or Kyverno?</p>
+    <label><input type="radio" name="kcsa9" value="a"> OPA Gatekeeper (uses Rego language)</label>
+    <label><input type="radio" name="kcsa9" value="b"> Kyverno (uses YAML, K8s-native)</label>
+    <label><input type="radio" name="kcsa9" value="c"> Both are equally simple</label>
+    <label><input type="radio" name="kcsa9" value="d"> Neither — use NetworkPolicies instead</label>
+    <button onclick="revealAnswer('kcsa9','B — Kyverno','Kyverno policies are written in YAML (K8s-native). OPA Gatekeeper uses the Rego language, which has a steeper learning curve. Kyverno is simpler for teams already fluent in K8s YAML.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa9-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. What does mTLS provide in a service mesh?</p>
+    <label><input type="radio" name="kcsa10" value="a"> Load balancing between pods</label>
+    <label><input type="radio" name="kcsa10" value="b"> Mutual authentication and encrypted communication between services</label>
+    <label><input type="radio" name="kcsa10" value="c"> DNS resolution</label>
+    <label><input type="radio" name="kcsa10" value="d"> Container image verification</label>
+    <button onclick="revealAnswer('kcsa10','B — Mutual authentication + encryption','mTLS = both sides present certificates. Each service proves its identity to the other AND all traffic is encrypted. The sidecar proxy handles this transparently.')">Show Answer</button>
+    <div class="quiz-answer" id="kcsa10-result"></div>
+  </div>
+</div>
+
+<hr class="cert-sep">
+
+<!-- ============================================ -->
+<!--                                              -->
+<!-- ████  CERT 3: CKA  ████                      -->
+<!--                                              -->
+<!-- ============================================ -->
+<div id="cka"></div>
+<div class="cert-header cka-bg">
+  <h2>CERT 3: CKA</h2>
+  <div class="cert-sub">Certified Kubernetes Administrator</div>
+  <div class="cert-meta">Hands-on Lab &bull; 2 hours &bull; 66% to pass &bull; The big one for SRE roles</div>
+  <div class="cert-number">3</div>
+</div>
+
+<div class="card">
+  <h2>CKA Exam Domains</h2>
+  <div class="weight-bar"><span class="bar-label">Troubleshooting</span><div class="bar-track"><div class="bar-fill" style="width:30%;background:#0369a1">30%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Cluster Architecture</span><div class="bar-track"><div class="bar-fill" style="width:25%;background:#0284c7">25%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Services &amp; Networking</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#0ea5e9">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Workloads &amp; Scheduling</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#38bdf8">15%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Storage</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:#7dd3fc">10%</div></div></div>
+</div>
+
+<!-- CKA: Cluster Architecture -->
+<div class="card">
+  <div class="domain-tag" style="background:#0284c7">25% — CLUSTER ARCHITECTURE, INSTALLATION & CONFIGURATION</div>
+  <h2>Chapter 1: Cluster Setup with kubeadm</h2>
+
+  <h3>Installing a Cluster from Scratch</h3>
+  <p>kubeadm is the official tool to bootstrap a K8s cluster. It handles certificate generation, etcd setup, control plane components, and joining worker nodes.</p>
+
+  <div class="code"># On the CONTROL PLANE node:
+
+# 1. Initialize the cluster
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+# 2. Set up kubectl access
+mkdir -p $HOME/.kube
+sudo cp /etc/kubernetes/admin.conf $HOME/.kube/config
+
+# 3. Install a CNI (network plugin) — Calico example
+kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+
+# 4. Get the join command for worker nodes
+kubeadm token create --print-join-command</div>
+
+  <div class="code"># On each WORKER NODE:
+sudo kubeadm join 192.168.1.10:6443 --token abc123 \
+  --discovery-token-ca-cert-hash sha256:xyz789</div>
+
+  <h3>High Availability Setup</h3>
+  <div class="arch">
+                    Load Balancer (:6443)
+                    ┌──────┼──────┐
+                    ▼      ▼      ▼
+              ┌─────────┐ ┌─────────┐ ┌─────────┐
+              │Control  │ │Control  │ │Control  │
+              │Plane 1  │ │Plane 2  │ │Plane 3  │
+              │API+etcd │ │API+etcd │ │API+etcd │
+              └─────────┘ └─────────┘ └─────────┘
+                    │         │         │
+    ┌───────────────┼─────────┼─────────┼──────────┐
+    ▼       ▼       ▼         ▼         ▼          ▼
+  Worker  Worker  Worker    Worker    Worker    Worker</div>
+
+  <p>For HA: 3 control plane nodes (odd number for etcd quorum), a load balancer in front of the API servers, and stacked etcd (on the same nodes) or external etcd cluster.</p>
+
+  <h3>etcd Backup & Restore</h3>
+  <div class="code"># Backup etcd
+ETCDCTL_API=3 etcdctl snapshot save /tmp/etcd-backup.db \
+  --endpoints=https://127.0.0.1:2379 \
+  --cacert=/etc/kubernetes/pki/etcd/ca.crt \
+  --cert=/etc/kubernetes/pki/etcd/server.crt \
+  --key=/etc/kubernetes/pki/etcd/server.key
+
+# Restore etcd (disaster recovery)
+ETCDCTL_API=3 etcdctl snapshot restore /tmp/etcd-backup.db \
+  --data-dir=/var/lib/etcd-restored
+
+# Then update etcd pod manifest to point to new data dir</div>
+
+  <div class="warn"><strong>Exam critical:</strong> etcd backup/restore is almost guaranteed on the CKA exam. Memorize the flags: --endpoints, --cacert, --cert, --key for backup. --data-dir for restore.</div>
+</div>
+
+<!-- CKA: RBAC & Upgrades -->
+<div class="card">
+  <div class="domain-tag" style="background:#0284c7">25% — CLUSTER ARCHITECTURE</div>
+  <h2>Chapter 2: RBAC & Cluster Upgrades</h2>
+
+  <h3>RBAC in Practice</h3>
+  <div class="code"># Create a service account for CI/CD
+kubectl create serviceaccount deploy-bot -n production
+
+# Create a role with deploy permissions
+kubectl create role deployer --verb=get,list,create,update,patch \
+  --resource=deployments,services,configmaps -n production
+
+# Bind the role to the service account
+kubectl create rolebinding deploy-bot-binding \
+  --role=deployer --serviceaccount=production:deploy-bot -n production
+
+# Test permissions
+kubectl auth can-i create deployments -n production --as=system:serviceaccount:production:deploy-bot
+# yes</div>
+
+  <h3>Cluster Upgrade (kubeadm)</h3>
+  <p>Upgrade one minor version at a time (e.g., 1.34 → 1.35, never skip). Control plane first, then workers.</p>
+
+  <div class="code"># Step 1: Upgrade kubeadm on control plane
+sudo apt-get update
+sudo apt-get install -y kubeadm=1.35.0-00
+
+# Step 2: Plan the upgrade
+sudo kubeadm upgrade plan
+
+# Step 3: Apply the upgrade
+sudo kubeadm upgrade apply v1.35.0
+
+# Step 4: Drain a worker node (evict pods safely)
+kubectl drain worker-1 --ignore-daemonsets --delete-emptydir-data
+
+# Step 5: Upgrade kubelet + kubectl on the worker
+sudo apt-get install -y kubelet=1.35.0-00 kubectl=1.35.0-00
+sudo systemctl restart kubelet
+
+# Step 6: Uncordon the node (allow scheduling again)
+kubectl uncordon worker-1</div>
+
+  <div class="org-example"><strong>In your org:</strong> You upgrade staging first, run your test suite, wait a week. Then upgrade production control plane during a maintenance window. Drain and upgrade workers one at a time (rolling) so there's zero downtime. PodDisruptionBudgets ensure critical services always have minimum replicas during drain.</div>
+</div>
+
+<!-- CKA: Workloads & Scheduling -->
+<div class="card">
+  <div class="domain-tag" style="background:#38bdf8">15% — WORKLOADS & SCHEDULING</div>
+  <h2>Chapter 3: Workloads & Scheduling</h2>
+
+  <h3>Deployment Strategies</h3>
+  <div class="code"># Rolling Update (default) — gradually replace old pods
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1        # 1 extra pod during update
+      maxUnavailable: 0  # never drop below desired count
+
+# Recreate — kill all old pods, then create new ones
+# Use when you can't run two versions simultaneously (DB schema changes)
+spec:
+  strategy:
+    type: Recreate</div>
+
+  <h3>DaemonSets, Jobs, CronJobs</h3>
+  <p><strong>DaemonSet:</strong> Runs one pod per node. Use for: log collectors (Fluentd), monitoring agents (node-exporter), CNI plugins.</p>
+  <p><strong>Job:</strong> Run-to-completion workload. Runs a pod until it succeeds. Use for: database migrations, batch processing.</p>
+  <p><strong>CronJob:</strong> Scheduled Job. Runs on a cron schedule. Use for: nightly backups, hourly report generation.</p>
+
+  <div class="code"># CronJob: backup database every night at 2 AM
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: db-backup
+spec:
+  schedule: "0 2 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: backup
+            image: postgres:15
+            command: ["pg_dump", "-h", "db-host", "-U", "admin", "mydb"]
+          restartPolicy: OnFailure</div>
+
+  <h3>Resource Requests & Limits</h3>
+  <div class="code">resources:
+  requests:        # Guaranteed minimum (used for scheduling)
+    cpu: "250m"    # 250 millicores = 0.25 CPU
+    memory: "256Mi"
+  limits:          # Maximum allowed (enforced by cgroups)
+    cpu: "500m"    # Throttled if exceeded
+    memory: "512Mi" # OOMKilled if exceeded</div>
+
+  <p><strong>Requests</strong> = what the scheduler guarantees (used for placement). <strong>Limits</strong> = the ceiling. CPU over-limit = throttled. Memory over-limit = OOMKilled (exit code 137).</p>
+
+  <h3>Taints, Tolerations & Affinity</h3>
+  <div class="code"># Taint a node: only special workloads can run here
+kubectl taint nodes gpu-node nvidia.com/gpu=true:NoSchedule
+
+# Pod tolerates the taint
+tolerations:
+- key: "nvidia.com/gpu"
+  operator: "Equal"
+  value: "true"
+  effect: "NoSchedule"
+
+# Pod affinity: schedule near pods with label app=cache
+affinity:
+  podAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app: cache
+      topologyKey: kubernetes.io/hostname
+
+# Pod anti-affinity: spread across zones
+affinity:
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+    - labelSelector:
+        matchLabels:
+          app: database
+      topologyKey: topology.kubernetes.io/zone</div>
+</div>
+
+<!-- CKA: Services & Networking -->
+<div class="card">
+  <div class="domain-tag" style="background:#0ea5e9">20% — SERVICES & NETWORKING</div>
+  <h2>Chapter 4: Services & Networking</h2>
+
+  <h3>Service Types</h3>
+  <ul>
+    <li><strong>ClusterIP (default):</strong> Internal only. Pods inside the cluster can reach it. Used for service-to-service communication.</li>
+    <li><strong>NodePort:</strong> Exposes on a static port (30000-32767) on every node. External traffic hits NodeIP:NodePort → routed to pods. Used for dev/testing.</li>
+    <li><strong>LoadBalancer:</strong> Provisions a cloud load balancer (ELB, NLB). External traffic → LB → pods. Used for production external services.</li>
+    <li><strong>ExternalName:</strong> Maps to a DNS name (CNAME). No proxying. Use when pointing to external services.</li>
+  </ul>
+
+  <div class="code"># ClusterIP (default)
+kubectl expose deployment backend --port=8080 --type=ClusterIP
+
+# NodePort
+kubectl expose deployment frontend --port=80 --type=NodePort
+
+# LoadBalancer
+kubectl expose deployment api --port=443 --type=LoadBalancer</div>
+
+  <h3>Ingress</h3>
+  <p>A single entry point for external HTTP/HTTPS traffic. Routes by host/path to different services. Requires an Ingress Controller (nginx, Traefik, AWS ALB).</p>
+
+  <div class="code">apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: api.mycompany.com
+    http:
+      paths:
+      - path: /v1
+        pathType: Prefix
+        backend:
+          service:
+            name: api-v1
+            port:
+              number: 80
+      - path: /v2
+        pathType: Prefix
+        backend:
+          service:
+            name: api-v2
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - api.mycompany.com
+    secretName: tls-secret</div>
+
+  <h3>DNS in Kubernetes</h3>
+  <p>CoreDNS runs as pods in kube-system. Every service gets a DNS record: <code>&lt;service&gt;.&lt;namespace&gt;.svc.cluster.local</code>. Pods in the same namespace can use just the service name. Cross-namespace: <code>service-name.other-namespace</code>.</p>
+
+  <div class="code"># From within a pod:
+curl http://backend              # same namespace
+curl http://backend.production   # cross-namespace
+curl http://backend.production.svc.cluster.local  # full FQDN</div>
+</div>
+
+<!-- CKA: Storage -->
+<div class="card">
+  <div class="domain-tag" style="background:#7dd3fc;color:#333">10% — STORAGE</div>
+  <h2>Chapter 5: Storage</h2>
+
+  <h3>PV, PVC, StorageClass</h3>
+  <div class="arch">
+  StorageClass (gp3, io2, standard)
+       │
+       │  dynamically provisions
+       ▼
+  PersistentVolume (PV)  ◄──── bound ────►  PersistentVolumeClaim (PVC)
+  (the actual disk)                          (the request from a pod)
+       │
+       ▼
+  Cloud Disk (EBS, GCE PD, Azure Disk)</div>
+
+  <div class="code"># StorageClass for AWS gp3
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: gp3
+provisioner: ebs.csi.aws.com
+parameters:
+  type: gp3
+reclaimPolicy: Retain   # Keep disk when PVC is deleted
+volumeBindingMode: WaitForFirstConsumer  # Bind to node's AZ
+
+---
+# PVC
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-data
+spec:
+  accessModes: [ReadWriteOnce]
+  storageClassName: gp3
+  resources:
+    requests:
+      storage: 100Gi
+
+---
+# Pod using the PVC
+spec:
+  volumes:
+  - name: data
+    persistentVolumeClaim:
+      claimName: postgres-data
+  containers:
+  - name: postgres
+    volumeMounts:
+    - name: data
+      mountPath: /var/lib/postgresql/data</div>
+
+  <p><strong>Access Modes:</strong> ReadWriteOnce (one node), ReadOnlyMany (many nodes read), ReadWriteMany (many nodes read/write — needs NFS or EFS).</p>
+  <p><strong>Reclaim Policy:</strong> Retain (keep disk after PVC delete), Delete (destroy disk). Always use Retain for databases.</p>
+</div>
+
+<!-- CKA: Troubleshooting -->
+<div class="card">
+  <div class="domain-tag" style="background:#0369a1">30% — TROUBLESHOOTING</div>
+  <h2>Chapter 6: Troubleshooting (30% of exam!)</h2>
+
+  <h3>The Troubleshooting Flowchart</h3>
+  <div class="arch">
+  Pod not running?
+  ├── Pending? → kubectl describe pod → check Events
+  │   ├── Insufficient CPU/memory → scale nodes or reduce requests
+  │   ├── No matching node (taints) → add toleration or remove taint
+  │   └── PVC not bound → check StorageClass, PV availability
+  ├── CrashLoopBackOff? → kubectl logs --previous
+  │   ├── Exit 137 → OOMKilled → increase memory limit
+  │   ├── Exit 1 → app error → check logs for stack trace
+  │   └── Exit 0 → app exits normally → check entrypoint/CMD
+  ├── ImagePullBackOff? → wrong image name, private registry auth
+  └── Running but not ready? → readiness probe failing
+      └── kubectl describe → check probe config, app startup time</div>
+
+  <h3>Essential Troubleshooting Commands</h3>
+  <div class="code"># Application debugging
+kubectl describe pod &lt;name&gt; -n &lt;ns&gt;          # Events, conditions, status
+kubectl logs &lt;pod&gt; -n &lt;ns&gt; --previous         # Crash logs from previous container
+kubectl logs &lt;pod&gt; -n &lt;ns&gt; -c &lt;container&gt;     # Specific container in multi-container pod
+kubectl exec -it &lt;pod&gt; -- /bin/sh              # Get a shell inside the container
+kubectl get events --sort-by='.lastTimestamp' -A  # Cluster-wide events timeline
+
+# Node debugging
+kubectl describe node &lt;name&gt;                   # Conditions, capacity, allocations
+kubectl top nodes                               # Actual CPU/memory usage
+kubectl top pods -n &lt;ns&gt; --sort-by=memory       # Find resource hogs
+kubectl cordon &lt;node&gt;                           # Prevent new scheduling
+kubectl drain &lt;node&gt; --ignore-daemonsets        # Evict pods for maintenance
+
+# Network debugging
+kubectl run debug --rm -it --image=busybox -- nslookup &lt;service&gt;
+kubectl get endpoints &lt;service&gt; -n &lt;ns&gt;         # Empty = no backend pods
+kubectl get svc -n &lt;ns&gt;                          # Check service selector + ports
+
+# Control plane debugging
+kubectl get componentstatuses                    # (deprecated but still works)
+kubectl get pods -n kube-system                  # Check control plane pods
+crictl ps -a                                     # Container runtime level
+journalctl -u kubelet -f                         # Kubelet logs on node</div>
+
+  <div class="warn"><strong>Exam tip:</strong> Troubleshooting is 30% of CKA. The pattern is always: describe → logs → events → exec. For node issues: kubelet journal + crictl. For networking: run a debug pod + check endpoints. Practice this flow until it's muscle memory.</div>
+</div>
+
+<!-- CKA QUIZ -->
+<div class="quiz">
+  <h3>CKA Quiz — 10 Questions</h3>
+
+  <div class="quiz-q">
+    <p>1. What flags are required for etcd backup? (Select the right set)</p>
+    <label><input type="radio" name="cka1" value="a"> --endpoints, --cacert, --cert, --key</label>
+    <label><input type="radio" name="cka1" value="b"> --server, --ca, --client-cert, --client-key</label>
+    <label><input type="radio" name="cka1" value="c"> --url, --tls-ca, --tls-cert, --tls-key</label>
+    <label><input type="radio" name="cka1" value="d"> --host, --root-ca, --cert-file, --key-file</label>
+    <button onclick="revealAnswer('cka1','A — --endpoints, --cacert, --cert, --key','The etcdctl snapshot save command needs these 4 flags plus the output path. Certs are typically in /etc/kubernetes/pki/etcd/.')">Show Answer</button>
+    <div class="quiz-answer" id="cka1-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. A pod has exit code 137. What happened?</p>
+    <label><input type="radio" name="cka2" value="a"> Application error</label>
+    <label><input type="radio" name="cka2" value="b"> Image not found</label>
+    <label><input type="radio" name="cka2" value="c"> OOMKilled — exceeded memory limit</label>
+    <label><input type="radio" name="cka2" value="d"> Network timeout</label>
+    <button onclick="revealAnswer('cka2','C — OOMKilled','Exit code 137 = SIGKILL (128+9). The kubelet kills the container because it exceeded its memory limit. Fix: increase memory limits or optimize the app.')">Show Answer</button>
+    <div class="quiz-answer" id="cka2-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. What's the correct order for upgrading a cluster?</p>
+    <label><input type="radio" name="cka3" value="a"> Workers first, then control plane</label>
+    <label><input type="radio" name="cka3" value="b"> Control plane first, then workers one at a time</label>
+    <label><input type="radio" name="cka3" value="c"> All nodes simultaneously</label>
+    <label><input type="radio" name="cka3" value="d"> etcd first, then scheduler, then API server</label>
+    <button onclick="revealAnswer('cka3','B — Control plane first, then workers','Upgrade kubeadm → upgrade control plane → drain worker → upgrade worker kubelet → uncordon. One worker at a time for zero downtime.')">Show Answer</button>
+    <div class="quiz-answer" id="cka3-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. What does <code>kubectl drain</code> do?</p>
+    <label><input type="radio" name="cka4" value="a"> Deletes the node from the cluster</label>
+    <label><input type="radio" name="cka4" value="b"> Evicts all pods from the node and marks it unschedulable</label>
+    <label><input type="radio" name="cka4" value="c"> Drains network traffic from the node</label>
+    <label><input type="radio" name="cka4" value="d"> Removes storage from the node</label>
+    <button onclick="revealAnswer('cka4','B — Evicts pods and marks unschedulable','Drain = cordon (mark unschedulable) + evict all pods. Pods are rescheduled to other nodes. Used before maintenance/upgrades.')">Show Answer</button>
+    <div class="quiz-answer" id="cka4-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. Service type that provisions a cloud load balancer?</p>
+    <label><input type="radio" name="cka5" value="a"> ClusterIP</label>
+    <label><input type="radio" name="cka5" value="b"> NodePort</label>
+    <label><input type="radio" name="cka5" value="c"> LoadBalancer</label>
+    <label><input type="radio" name="cka5" value="d"> ExternalName</label>
+    <button onclick="revealAnswer('cka5','C — LoadBalancer','LoadBalancer type tells the cloud provider to create an ELB/NLB/ALB that routes external traffic to your pods. Works in AWS, GCP, Azure.')">Show Answer</button>
+    <div class="quiz-answer" id="cka5-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. PVC bound but pod can't mount? Most likely cause?</p>
+    <label><input type="radio" name="cka6" value="a"> PVC is in wrong namespace</label>
+    <label><input type="radio" name="cka6" value="b"> Volume is ReadWriteOnce and already mounted on another node</label>
+    <label><input type="radio" name="cka6" value="c"> StorageClass doesn't exist</label>
+    <label><input type="radio" name="cka6" value="d"> etcd is down</label>
+    <button onclick="revealAnswer('cka6','B — ReadWriteOnce already mounted','RWO volumes can only attach to one node. If the PV is still attached to the old node (pod deleted but volume not detached), new pod on different node can not mount it.')">Show Answer</button>
+    <div class="quiz-answer" id="cka6-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. How do you check if a service has backend pods?</p>
+    <label><input type="radio" name="cka7" value="a"> kubectl get pods</label>
+    <label><input type="radio" name="cka7" value="b"> kubectl get endpoints &lt;service-name&gt;</label>
+    <label><input type="radio" name="cka7" value="c"> kubectl describe service</label>
+    <label><input type="radio" name="cka7" value="d"> kubectl logs service</label>
+    <button onclick="revealAnswer(\"cka7\",\"B — kubectl get endpoints\",\"If endpoints are empty, the service has no matching backend pods. Check that service selector labels match pod labels.\")">Show Answer</button>
+    <div class="quiz-answer" id="cka7-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. What CNI plugin handles networking in a K8s cluster?</p>
+    <label><input type="radio" name="cka8" value="a"> CoreDNS</label>
+    <label><input type="radio" name="cka8" value="b"> kube-proxy</label>
+    <label><input type="radio" name="cka8" value="c"> Calico, Flannel, Cilium, or Weave</label>
+    <label><input type="radio" name="cka8" value="d"> containerd</label>
+    <button onclick="revealAnswer('cka8','C — Calico, Flannel, Cilium, or Weave','CNI (Container Network Interface) plugins provide pod networking. Calico and Cilium also support NetworkPolicies. CoreDNS is DNS. kube-proxy handles service routing.')">Show Answer</button>
+    <div class="quiz-answer" id="cka8-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. What reclaim policy should you use for database PVs?</p>
+    <label><input type="radio" name="cka9" value="a"> Delete</label>
+    <label><input type="radio" name="cka9" value="b"> Retain</label>
+    <label><input type="radio" name="cka9" value="c"> Recycle</label>
+    <label><input type="radio" name="cka9" value="d"> Archive</label>
+    <button onclick="revealAnswer('cka9','B — Retain','Retain keeps the disk after PVC deletion. Delete destroys it. For databases, always Retain — losing your Postgres volume is not a fun conversation.')">Show Answer</button>
+    <div class="quiz-answer" id="cka9-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. What does <code>kubectl auth can-i</code> do?</p>
+    <label><input type="radio" name="cka10" value="a"> Creates an authentication token</label>
+    <label><input type="radio" name="cka10" value="b"> Checks if a user/service account has permission to perform an action</label>
+    <label><input type="radio" name="cka10" value="c"> Lists all authorized users</label>
+    <label><input type="radio" name="cka10" value="d"> Rotates TLS certificates</label>
+    <button onclick="revealAnswer('cka10','B — Checks permissions','kubectl auth can-i create pods --as=dev-user tells you if dev-user can create pods. Essential for RBAC debugging.')">Show Answer</button>
+    <div class="quiz-answer" id="cka10-result"></div>
+  </div>
+</div>
+
+<hr class="cert-sep">
+
+<!-- ============================================ -->
+<!--                                              -->
+<!-- ████  CERT 4: CKAD  ████                     -->
+<!--                                              -->
+<!-- ============================================ -->
+<div id="ckad"></div>
+<div class="cert-header ckad-bg">
+  <h2>CERT 4: CKAD</h2>
+  <div class="cert-sub">Certified Kubernetes Application Developer</div>
+  <div class="cert-meta">Hands-on Lab &bull; 2 hours &bull; 66% to pass &bull; App-focused</div>
+  <div class="cert-number">4</div>
+</div>
+
+<div class="card">
+  <h2>CKAD Exam Domains</h2>
+  <div class="weight-bar"><span class="bar-label">App Env, Config &amp; Security</span><div class="bar-track"><div class="bar-fill" style="width:25%;background:#059669">25%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">App Design &amp; Build</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#10b981">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">App Deployment</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#34d399">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Services &amp; Networking</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#6ee7b7">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Observability &amp; Maintenance</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#a7f3d0;color:#333">15%</div></div></div>
+</div>
+
+<!-- CKAD: Design & Build -->
+<div class="card">
+  <div class="domain-tag" style="background:#10b981">20% — APPLICATION DESIGN & BUILD</div>
+  <h2>Chapter 1: Container Images & Multi-Container Pods</h2>
+
+  <h3>Dockerfile Best Practices</h3>
+  <div class="code"># Multi-stage build: build in one stage, run in minimal image
+FROM golang:1.22 AS builder
+WORKDIR /app
+COPY . .
+RUN CGO_ENABLED=0 go build -o server .
+
+FROM gcr.io/distroless/static:nonroot
+COPY --from=builder /app/server /server
+USER 65534:65534
+ENTRYPOINT ["/server"]
+# Final image: ~15MB, no shell, non-root, minimal attack surface</div>
+
+  <h3>Multi-Container Pod Patterns</h3>
+  <ul>
+    <li><strong>Sidecar:</strong> Helper container that enhances the main container. Example: Envoy proxy for mTLS, Fluentd for log shipping.</li>
+    <li><strong>Init Container:</strong> Runs before the main container starts. Use for: waiting for a database, downloading config, running migrations.</li>
+    <li><strong>Ambassador:</strong> Proxy container that simplifies external access. Your app talks to localhost; the ambassador handles service discovery.</li>
+    <li><strong>Adapter:</strong> Transforms output of the main container. Example: converts log format from proprietary to standard JSON.</li>
+  </ul>
+
+  <div class="code"># Init container: wait for database before app starts
+spec:
+  initContainers:
+  - name: wait-for-db
+    image: busybox
+    command: ['sh', '-c',
+      'until nc -z postgres-svc 5432; do echo waiting; sleep 2; done']
+  containers:
+  - name: app
+    image: my-app:v2</div>
+
+  <div class="org-example"><strong>In your org:</strong> Your payment service pod has: init container (waits for Redis), main container (the app), sidecar (Envoy for mTLS). The init container ensures the app never starts without its dependency. The sidecar handles encryption without your app knowing.</div>
+</div>
+
+<!-- CKAD: Configuration -->
+<div class="card">
+  <div class="domain-tag" style="background:#059669">25% — APP ENVIRONMENT, CONFIG & SECURITY</div>
+  <h2>Chapter 2: Configuration & Security</h2>
+
+  <h3>Service Accounts</h3>
+  <p>Every pod runs as a service account. Service accounts provide identity for processes running in pods. By default, pods use the "default" service account, which may have too many permissions.</p>
+
+  <div class="code"># Create dedicated service account
+kubectl create sa app-sa -n production
+
+# Disable auto-mounting of token (security best practice)
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: app-sa
+automountServiceAccountToken: false
+
+# Use in pod spec
+spec:
+  serviceAccountName: app-sa</div>
+
+  <h3>SecurityContext</h3>
+  <div class="code"># Pod-level security context
+spec:
+  securityContext:
+    runAsUser: 1000
+    runAsGroup: 3000
+    fsGroup: 2000
+    runAsNonRoot: true
+  containers:
+  - name: app
+    securityContext:
+      allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop: ["ALL"]</div>
+
+  <h3>Resource Quotas & Limit Ranges</h3>
+  <div class="code"># ResourceQuota: limit total resources in a namespace
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: team-quota
+  namespace: team-a
+spec:
+  hard:
+    requests.cpu: "10"
+    requests.memory: "20Gi"
+    limits.cpu: "20"
+    limits.memory: "40Gi"
+    pods: "50"
+
+---
+# LimitRange: default limits for pods that don't specify them
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: default-limits
+  namespace: team-a
+spec:
+  limits:
+  - default:
+      cpu: "500m"
+      memory: "256Mi"
+    defaultRequest:
+      cpu: "100m"
+      memory: "128Mi"
+    type: Container</div>
+
+  <div class="org-example"><strong>In your org:</strong> Each team gets a namespace with a ResourceQuota. Team A gets 20 CPUs max. LimitRanges ensure that even if a developer forgets to set limits, their pod gets defaults instead of consuming unlimited resources.</div>
+</div>
+
+<!-- CKAD: Deployment -->
+<div class="card">
+  <div class="domain-tag" style="background:#34d399;color:#333">20% — APPLICATION DEPLOYMENT</div>
+  <h2>Chapter 3: Deployment Strategies & Helm</h2>
+
+  <h3>Blue/Green Deployment</h3>
+  <p>Run two identical environments. Blue = current production. Green = new version. Test green, then switch the Service selector from blue to green. Instant rollback = switch back to blue.</p>
+  <div class="code"># Service currently pointing to blue
+spec:
+  selector:
+    app: my-app
+    version: blue    # Change to "green" to switch
+
+# Deploy green alongside blue
+kubectl apply -f deployment-green.yaml
+
+# Test green pods directly
+# Switch traffic: update service selector
+kubectl patch service my-app -p '{"spec":{"selector":{"version":"green"}}}'
+
+# Rollback: switch back to blue
+kubectl patch service my-app -p '{"spec":{"selector":{"version":"blue"}}}'</div>
+
+  <h3>Canary Deployment</h3>
+  <p>Route a small percentage of traffic to the new version. Monitor errors and latency. If healthy, gradually increase. If broken, route all traffic back to stable.</p>
+
+  <h3>Helm Deep Dive</h3>
+  <div class="code"># Chart structure
+my-chart/
+├── Chart.yaml          # Chart metadata (name, version)
+├── values.yaml         # Default configuration values
+├── templates/          # K8s manifests with Go templates
+│   ├── deployment.yaml
+│   ├── service.yaml
+│   └── ingress.yaml
+└── charts/             # Dependency charts
+
+# Install with custom values
+helm install my-release ./my-chart \
+  --namespace production \
+  --values prod-values.yaml \
+  --set image.tag=v2.3.1
+
+# List releases
+helm list -n production
+
+# Rollback to previous version
+helm rollback my-release 1 -n production
+
+# Template locally (dry-run to see generated YAML)
+helm template my-release ./my-chart --values prod-values.yaml</div>
+
+  <h3>Kustomize</h3>
+  <p>Built into kubectl. Overlay-based customization without templates. Base manifests + environment-specific overlays.</p>
+  <div class="code"># Directory structure
+base/
+├── kustomization.yaml
+├── deployment.yaml
+└── service.yaml
+overlays/
+├── dev/
+│   └── kustomization.yaml   # patches for dev
+└── prod/
+    └── kustomization.yaml   # patches for prod
+
+# Apply production overlay
+kubectl apply -k overlays/prod/</div>
+</div>
+
+<!-- CKAD: Probes & Observability -->
+<div class="card">
+  <div class="domain-tag" style="background:#a7f3d0;color:#333">15% — OBSERVABILITY & MAINTENANCE</div>
+  <h2>Chapter 4: Probes & Observability</h2>
+
+  <h3>Three Types of Probes</h3>
+  <p><strong>Liveness Probe:</strong> "Is the container alive?" If it fails, kubelet restarts the container. Use when your app can hang or deadlock.</p>
+  <p><strong>Readiness Probe:</strong> "Is the container ready to serve traffic?" If it fails, the pod is removed from Service endpoints. Use for warm-up time.</p>
+  <p><strong>Startup Probe:</strong> "Has the container started?" Disables liveness/readiness until it succeeds. Use for slow-starting apps (Java apps with 60s startup).</p>
+
+  <div class="code">containers:
+- name: app
+  livenessProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    initialDelaySeconds: 15
+    periodSeconds: 10
+    failureThreshold: 3     # 3 failures = restart
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
+  startupProbe:
+    httpGet:
+      path: /healthz
+      port: 8080
+    failureThreshold: 30     # 30 x 10s = 5 min max startup
+    periodSeconds: 10</div>
+
+  <h3>API Deprecations</h3>
+  <p>K8s deprecates APIs and removes them after 2-3 versions. Check before upgrading:</p>
+  <div class="code"># Check for deprecated APIs in your manifests
+kubectl convert -f old-manifest.yaml  # (if available)
+
+# Or use kubent (kube-no-trouble)
+kubent  # scans cluster for deprecated API versions
+
+# Common migrations:
+# extensions/v1beta1/Ingress → networking.k8s.io/v1/Ingress
+# policy/v1beta1/PodSecurityPolicy → replaced by Pod Security Standards</div>
+</div>
+
+<!-- CKAD: CRDs -->
+<div class="card">
+  <div class="domain-tag" style="background:#059669">CUSTOM RESOURCES</div>
+  <h2>Chapter 5: CRDs & Extending Kubernetes</h2>
+
+  <h3>Custom Resource Definitions (CRDs)</h3>
+  <p>Extend the Kubernetes API with your own resource types. Once defined, you can <code>kubectl get</code> them just like pods or services.</p>
+
+  <div class="code"># CRD: define a new "DatabaseBackup" resource
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: databasebackups.mycompany.com
+spec:
+  group: mycompany.com
+  versions:
+  - name: v1
+    served: true
+    storage: true
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            properties:
+              database:
+                type: string
+              schedule:
+                type: string
+  scope: Namespaced
+  names:
+    plural: databasebackups
+    singular: databasebackup
+    kind: DatabaseBackup
+    shortNames: [dbb]
+
+---
+# Now you can create instances:
+apiVersion: mycompany.com/v1
+kind: DatabaseBackup
+metadata:
+  name: nightly-backup
+spec:
+  database: production-postgres
+  schedule: "0 2 * * *"
+
+# And query them:
+# kubectl get databasebackups
+# kubectl get dbb</div>
+
+  <div class="org-example"><strong>In your org:</strong> CRDs + a custom controller (operator) = automation. You define a PostgresCluster CRD. The operator watches for it and automatically provisions a 3-node Postgres cluster with replication, backups, and failover. Your developers just write 10 lines of YAML instead of managing databases manually.</div>
+</div>
+
+<!-- CKAD QUIZ -->
+<div class="quiz">
+  <h3>CKAD Quiz — 10 Questions</h3>
+
+  <div class="quiz-q">
+    <p>1. What's the purpose of a multi-stage Docker build?</p>
+    <label><input type="radio" name="ckad1" value="a"> Run multiple apps in one container</label>
+    <label><input type="radio" name="ckad1" value="b"> Build in a large image, copy only the binary to a minimal runtime image</label>
+    <label><input type="radio" name="ckad1" value="c"> Create multiple containers from one Dockerfile</label>
+    <label><input type="radio" name="ckad1" value="d"> Build for multiple architectures</label>
+    <button onclick="revealAnswer('ckad1','B — Build in large image, copy binary to minimal image','Multi-stage builds keep your final image small and secure. Build dependencies stay in the build stage. Final image has only the binary + runtime.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad1-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. Init container fails. What happens to the main container?</p>
+    <label><input type="radio" name="ckad2" value="a"> Main container starts anyway</label>
+    <label><input type="radio" name="ckad2" value="b"> Main container never starts; pod stays in Init state</label>
+    <label><input type="radio" name="ckad2" value="c"> Pod is deleted</label>
+    <label><input type="radio" name="ckad2" value="d"> Main container starts after 60 second timeout</label>
+    <button onclick="revealAnswer('ckad2','B — Main container never starts','Init containers must complete successfully before main containers start. If init fails, it retries based on restartPolicy. Main container waits.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad2-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. Liveness probe fails 3 times. What happens?</p>
+    <label><input type="radio" name="ckad3" value="a"> Pod is removed from service endpoints</label>
+    <label><input type="radio" name="ckad3" value="b"> Container is restarted</label>
+    <label><input type="radio" name="ckad3" value="c"> Pod is deleted and rescheduled</label>
+    <label><input type="radio" name="ckad3" value="d"> Nothing, it's just a warning</label>
+    <button onclick="revealAnswer('ckad3','B — Container is restarted','Liveness = is it alive? Failure = kubelet restarts the container (not the pod). Readiness failure = removed from endpoints. Different behaviors!')">Show Answer</button>
+    <div class="quiz-answer" id="ckad3-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. How do you rollback a Helm release?</p>
+    <label><input type="radio" name="ckad4" value="a"> helm undo &lt;release&gt;</label>
+    <label><input type="radio" name="ckad4" value="b"> helm rollback &lt;release&gt; &lt;revision&gt;</label>
+    <label><input type="radio" name="ckad4" value="c"> helm revert &lt;release&gt;</label>
+    <label><input type="radio" name="ckad4" value="d"> helm restore &lt;release&gt;</label>
+    <button onclick="revealAnswer('ckad4','B — helm rollback &lt;release&gt; &lt;revision&gt;','helm rollback my-app 1 reverts to revision 1. Use helm history my-app to see all revisions and pick which to roll back to.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad4-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. What does a ResourceQuota control?</p>
+    <label><input type="radio" name="ckad5" value="a"> CPU/memory limits per container</label>
+    <label><input type="radio" name="ckad5" value="b"> Total resources a namespace can consume</label>
+    <label><input type="radio" name="ckad5" value="c"> Number of nodes in the cluster</label>
+    <label><input type="radio" name="ckad5" value="d"> Network bandwidth per pod</label>
+    <button onclick="revealAnswer('ckad5','B — Total resources a namespace can consume','ResourceQuota limits the aggregate resources in a namespace: total CPU, memory, number of pods, PVCs, etc. LimitRange sets per-pod defaults.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad5-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. Blue/Green deployment: how do you switch traffic?</p>
+    <label><input type="radio" name="ckad6" value="a"> Delete old pods</label>
+    <label><input type="radio" name="ckad6" value="b"> Update the Service selector to point to the new version's labels</label>
+    <label><input type="radio" name="ckad6" value="c"> Change the Deployment image</label>
+    <label><input type="radio" name="ckad6" value="d"> Restart the Ingress controller</label>
+    <button onclick="revealAnswer('ckad6','B — Update Service selector','In blue/green, both versions run simultaneously. The Service selector points to one version. Switch selector = instant traffic switch. Keep old pods for instant rollback.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad6-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. What does <code>kubectl apply -k overlays/prod/</code> do?</p>
+    <label><input type="radio" name="ckad7" value="a"> Applies a Helm chart</label>
+    <label><input type="radio" name="ckad7" value="b"> Applies Kustomize overlays for production environment</label>
+    <label><input type="radio" name="ckad7" value="c"> Creates a Kubernetes namespace</label>
+    <label><input type="radio" name="ckad7" value="d"> Runs a CronJob</label>
+    <button onclick="revealAnswer('ckad7','B — Applies Kustomize overlays for production','The -k flag tells kubectl to use Kustomize. It reads the kustomization.yaml in that directory and applies the base manifests with production-specific patches.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad7-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. What's a CRD?</p>
+    <label><input type="radio" name="ckad8" value="a"> A container runtime driver</label>
+    <label><input type="radio" name="ckad8" value="b"> A way to extend the K8s API with custom resource types</label>
+    <label><input type="radio" name="ckad8" value="c"> A certificate renewal daemon</label>
+    <label><input type="radio" name="ckad8" value="d"> A cluster recovery document</label>
+    <button onclick="revealAnswer('ckad8','B — Extend K8s API with custom resources','CRDs let you create your own K8s objects. Combined with a custom controller (operator), you can automate complex operations like database provisioning.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad8-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. Why set <code>automountServiceAccountToken: false</code>?</p>
+    <label><input type="radio" name="ckad9" value="a"> To speed up pod startup</label>
+    <label><input type="radio" name="ckad9" value="b"> To prevent the pod from getting a token that could be used to access the K8s API</label>
+    <label><input type="radio" name="ckad9" value="c"> To save disk space</label>
+    <label><input type="radio" name="ckad9" value="d"> It's required for stateful pods</label>
+    <button onclick="revealAnswer('ckad9','B — Prevent API access token from being mounted','If your app does not need to talk to the K8s API, disable token mounting. If compromised, attackers can not use the token to access the API server.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad9-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. Readiness probe fails. What happens?</p>
+    <label><input type="radio" name="ckad10" value="a"> Container is restarted</label>
+    <label><input type="radio" name="ckad10" value="b"> Pod is removed from Service endpoints (stops receiving traffic)</label>
+    <label><input type="radio" name="ckad10" value="c"> Pod is deleted</label>
+    <label><input type="radio" name="ckad10" value="d"> Node is cordoned</label>
+    <button onclick="revealAnswer('ckad10','B — Removed from Service endpoints','Readiness = is it ready for traffic? Failure = removed from endpoints, no traffic sent. Container keeps running. When it becomes ready again, traffic resumes.')">Show Answer</button>
+    <div class="quiz-answer" id="ckad10-result"></div>
+  </div>
+</div>
+
+<hr class="cert-sep">
+
+<!-- ============================================ -->
+<!--                                              -->
+<!-- ████  CERT 5: CKS  ████                      -->
+<!--                                              -->
+<!-- ============================================ -->
+<div id="cks"></div>
+<div class="cert-header cks-bg">
+  <h2>CERT 5: CKS</h2>
+  <div class="cert-sub">Certified Kubernetes Security Specialist</div>
+  <div class="cert-meta">Hands-on Lab &bull; 2 hours &bull; 67% to pass &bull; Requires active CKA &bull; The hardest one</div>
+  <div class="cert-number">5</div>
+</div>
+
+<div class="card">
+  <h2>CKS Exam Domains</h2>
+  <div class="weight-bar"><span class="bar-label">Microservice Vulnerabilities</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#b45309">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Supply Chain Security</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#d97706">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Monitoring &amp; Runtime</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#f59e0b">20%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Cluster Setup</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#fbbf24">15%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">Cluster Hardening</span><div class="bar-track"><div class="bar-fill" style="width:15%;background:#fcd34d">15%</div></div></div>
+  <div class="weight-bar"><span class="bar-label">System Hardening</span><div class="bar-track"><div class="bar-fill" style="width:10%;background:#fde68a;color:#333">10%</div></div></div>
+</div>
+
+<!-- CKS: Cluster Setup -->
+<div class="card">
+  <div class="domain-tag" style="background:#fbbf24;color:#333">15% — CLUSTER SETUP</div>
+  <h2>Chapter 1: Secure Cluster Setup</h2>
+
+  <h3>API Server Security</h3>
+  <div class="code"># Critical API server flags (in /etc/kubernetes/manifests/kube-apiserver.yaml)
+--anonymous-auth=false              # Disable anonymous access
+--authorization-mode=Node,RBAC      # Enable RBAC + Node authorization
+--enable-admission-plugins=NodeRestriction,PodSecurity
+--audit-log-path=/var/log/k8s-audit.log
+--audit-log-maxage=30
+--audit-policy-file=/etc/kubernetes/audit-policy.yaml
+--encryption-provider-config=/etc/kubernetes/encryption.yaml  # Encrypt secrets at rest
+--kubelet-certificate-authority=/etc/kubernetes/pki/ca.crt     # Verify kubelet certs
+--tls-min-version=VersionTLS12      # Minimum TLS 1.2</div>
+
+  <h3>Audit Logging</h3>
+  <p>Audit logs record every API request: who did what, when, on which resource. Essential for compliance and incident investigation.</p>
+  <div class="code"># Audit policy: what to log
+apiVersion: audit.k8s.io/v1
+kind: Policy
+rules:
+# Log all requests to secrets at RequestResponse level
+- level: RequestResponse
+  resources:
+  - group: ""
+    resources: ["secrets"]
+# Log metadata for everything else
+- level: Metadata
+
+# Levels: None → Metadata → Request → RequestResponse</div>
+
+  <h3>Ingress TLS</h3>
+  <div class="code"># Create TLS secret
+kubectl create secret tls my-tls \
+  --cert=tls.crt --key=tls.key -n production
+
+# Use in Ingress
+spec:
+  tls:
+  - hosts:
+    - api.mycompany.com
+    secretName: my-tls</div>
+
+  <div class="tip"><strong>CIS Benchmark:</strong> Run <code>kube-bench</code> regularly. It checks all these settings automatically and tells you what's missing. Fix the FAIL items first.</div>
+</div>
+
+<!-- CKS: Cluster Hardening -->
+<div class="card">
+  <div class="domain-tag" style="background:#fcd34d;color:#333">15% — CLUSTER HARDENING</div>
+  <h2>Chapter 2: Cluster Hardening</h2>
+
+  <h3>Restrict API Access</h3>
+  <div class="code"># Disable default service account token auto-mount cluster-wide
+kubectl patch serviceaccount default -n default \
+  -p '{"automountServiceAccountToken": false}'
+
+# Restrict kubelet permissions
+# In kubelet config:
+authentication:
+  anonymous:
+    enabled: false
+  webhook:
+    enabled: true
+authorization:
+  mode: Webhook    # Not AlwaysAllow!</div>
+
+  <h3>Upgrade Kubernetes Regularly</h3>
+  <p>Each K8s version gets ~14 months of patch support. Running an unsupported version = known CVEs unpatched. Upgrade at least once per year.</p>
+
+  <h3>Restrict etcd Access</h3>
+  <div class="code"># etcd should ONLY be accessible by the API server
+# Firewall: allow port 2379 only from control plane IPs
+# Use client cert authentication
+--client-cert-auth=true
+--trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+--cert-file=/etc/kubernetes/pki/etcd/server.crt
+--key-file=/etc/kubernetes/pki/etcd/server.key</div>
+</div>
+
+<!-- CKS: System Hardening -->
+<div class="card">
+  <div class="domain-tag" style="background:#fde68a;color:#333">10% — SYSTEM HARDENING</div>
+  <h2>Chapter 3: System Hardening</h2>
+
+  <h3>AppArmor & Seccomp</h3>
+  <p><strong>AppArmor:</strong> Linux security module that restricts what a process can access (files, network, capabilities). Apply profiles to containers to limit their blast radius.</p>
+  <p><strong>Seccomp:</strong> Filters system calls a container can make. Block dangerous syscalls like ptrace, mount, reboot.</p>
+
+  <div class="code"># Seccomp profile in pod spec (K8s 1.19+)
+securityContext:
+  seccompProfile:
+    type: RuntimeDefault  # Docker/containerd default profile
+    # Or: type: Localhost
+    #     localhostProfile: profiles/my-profile.json
+
+# AppArmor annotation
+metadata:
+  annotations:
+    container.apparmor.security.beta.kubernetes.io/app: runtime/default</div>
+
+  <h3>Minimize Host OS Attack Surface</h3>
+  <ul>
+    <li>Remove unnecessary packages from nodes</li>
+    <li>Disable SSH to nodes (use kubectl exec or node-shell instead)</li>
+    <li>Use immutable OS images (Bottlerocket, Flatcar, Talos)</li>
+    <li>Restrict IAM roles: nodes should have minimal cloud permissions</li>
+  </ul>
+</div>
+
+<!-- CKS: Minimize Microservice Vulnerabilities -->
+<div class="card">
+  <div class="domain-tag" style="background:#b45309">20% — MINIMIZE MICROSERVICE VULNERABILITIES</div>
+  <h2>Chapter 4: Pod Security & Secrets Management</h2>
+
+  <h3>Pod Security Standards Enforcement</h3>
+  <div class="code"># Enforce restricted standard on production namespace
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: production
+  labels:
+    pod-security.kubernetes.io/enforce: restricted
+    pod-security.kubernetes.io/enforce-version: latest
+    pod-security.kubernetes.io/audit: restricted
+    pod-security.kubernetes.io/warn: restricted</div>
+
+  <h3>Secrets Encryption at Rest</h3>
+  <div class="code"># /etc/kubernetes/encryption.yaml
+apiVersion: apiserver.config.k8s.io/v1
+kind: EncryptionConfiguration
+resources:
+- resources:
+  - secrets
+  providers:
+  - aescbc:
+      keys:
+      - name: key1
+        secret: <base64-encoded-32-byte-key>
+  - identity: {}  # fallback: unencrypted (for reading old secrets)
+
+# Apply: add --encryption-provider-config to API server manifest
+# Verify: etcdctl get /registry/secrets/default/my-secret
+# Should be encrypted, not readable</div>
+
+  <h3>Runtime Sandboxing: gVisor & Kata</h3>
+  <p><strong>gVisor (runsc):</strong> User-space kernel that intercepts syscalls. Containers run in a sandbox — even if the app is compromised, it can't access the real kernel. Performance cost: ~10-30%.</p>
+  <p><strong>Kata Containers:</strong> Lightweight VMs for each container. Stronger isolation than gVisor but heavier. Use for multi-tenant environments.</p>
+
+  <div class="code"># RuntimeClass for gVisor
+apiVersion: node.k8s.io/v1
+kind: RuntimeClass
+metadata:
+  name: gvisor
+handler: runsc
+
+# Use in pod
+spec:
+  runtimeClassName: gvisor</div>
+</div>
+
+<!-- CKS: Supply Chain -->
+<div class="card">
+  <div class="domain-tag" style="background:#d97706">20% — SUPPLY CHAIN SECURITY</div>
+  <h2>Chapter 5: Supply Chain Security</h2>
+
+  <h3>Image Scanning & Policies</h3>
+  <div class="code"># Scan with Trivy
+trivy image --severity CRITICAL,HIGH my-app:v2.1.0
+
+# Scan in CI pipeline (fail build on critical CVEs)
+trivy image --exit-code 1 --severity CRITICAL my-app:v2.1.0
+
+# Static analysis of K8s manifests
+kubesec scan deployment.yaml
+# Checks for: privileged containers, missing resource limits,
+# running as root, host networking, etc.</div>
+
+  <h3>Admission Control for Images</h3>
+  <div class="code"># Kyverno policy: only allow images from approved registries
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: restrict-image-registries
+spec:
+  validationFailureAction: Enforce
+  rules:
+  - name: validate-registries
+    match:
+      any:
+      - resources:
+          kinds: [Pod]
+    validate:
+      message: "Images must come from approved registries"
+      pattern:
+        spec:
+          containers:
+          - image: "mycompany.azurecr.io/* | gcr.io/my-project/*"</div>
+
+  <h3>Minimize Base Image Footprint</h3>
+  <div class="arch">
+  Image Size Comparison:
+  ┌────────────────────────────────────────────┐
+  │ ubuntu:22.04        │████████████│ 77 MB   │
+  │ python:3.12         │███████████████│ 120MB │
+  │ alpine:3.19         │██│ 7 MB                │
+  │ python:3.12-alpine  │████│ 52 MB             │
+  │ distroless/python   │███│ 35 MB              │
+  │ scratch (empty)     │ 0 MB                   │
+  └────────────────────────────────────────────┘
+  Smaller image = fewer CVEs = smaller attack surface</div>
+</div>
+
+<!-- CKS: Runtime Security -->
+<div class="card">
+  <div class="domain-tag" style="background:#f59e0b">20% — MONITORING, LOGGING & RUNTIME SECURITY</div>
+  <h2>Chapter 6: Runtime Security & Monitoring</h2>
+
+  <h3>Falco: Runtime Threat Detection</h3>
+  <p>Falco watches kernel syscalls in real time and fires alerts on suspicious activity: shell spawned in container, sensitive file read, unexpected network connection.</p>
+
+  <div class="code"># Falco rule: alert when shell is opened in a container
+- rule: Terminal shell in container
+  desc: A shell was spawned inside a container
+  condition: >
+    spawned_process and container and
+    proc.name in (bash, sh, zsh)
+  output: >
+    Shell opened (user=%user.name container=%container.name
+    image=%container.image.repository command=%proc.cmdline)
+  priority: WARNING
+
+# Falco rule: detect crypto mining
+- rule: Detect crypto miners
+  desc: Detect known crypto mining processes
+  condition: >
+    spawned_process and container and
+    proc.name in (xmrig, minerd, cpuminer)
+  output: "Crypto miner detected (container=%container.name)"
+  priority: CRITICAL</div>
+
+  <h3>Audit Log Analysis</h3>
+  <div class="code"># Find who deleted a deployment
+cat /var/log/k8s-audit.log | jq 'select(.verb=="delete" and
+  .objectRef.resource=="deployments")'
+
+# Find all requests from unknown service accounts
+cat /var/log/k8s-audit.log | jq 'select(.user.username |
+  startswith("system:serviceaccount") | not)'</div>
+
+  <h3>Immutable Containers</h3>
+  <div class="code"># Read-only root filesystem
+securityContext:
+  readOnlyRootFilesystem: true
+
+# If app needs to write (logs, temp files), mount emptyDir
+volumes:
+- name: tmp
+  emptyDir: {}
+containers:
+- name: app
+  volumeMounts:
+  - name: tmp
+    mountPath: /tmp</div>
+
+  <div class="org-example"><strong>In your org:</strong> Production security stack: Falco (runtime detection) + Trivy (image scanning in CI) + Kyverno (admission policies) + kube-bench (CIS compliance) + audit logs (shipped to SIEM). Falco alerts go to PagerDuty. Trivy blocks deploys with critical CVEs. Kyverno enforces approved registries. This is defense in depth.</div>
+</div>
+
+<!-- CKS QUIZ -->
+<div class="quiz">
+  <h3>CKS Quiz — 10 Questions</h3>
+
+  <div class="quiz-q">
+    <p>1. What does Falco monitor to detect threats?</p>
+    <label><input type="radio" name="cks1" value="a"> Container images</label>
+    <label><input type="radio" name="cks1" value="b"> Kubernetes API requests</label>
+    <label><input type="radio" name="cks1" value="c"> Linux kernel syscalls in real time</label>
+    <label><input type="radio" name="cks1" value="d"> Network packets</label>
+    <button onclick="revealAnswer('cks1','C — Linux kernel syscalls','Falco hooks into the kernel (via eBPF or kernel module) and watches syscalls. It detects shell access, file reads, network connections, crypto miners — all at runtime.')">Show Answer</button>
+    <div class="quiz-answer" id="cks1-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>2. What does <code>readOnlyRootFilesystem: true</code> do?</p>
+    <label><input type="radio" name="cks2" value="a"> Encrypts the filesystem</label>
+    <label><input type="radio" name="cks2" value="b"> Prevents the container from writing to its root filesystem</label>
+    <label><input type="radio" name="cks2" value="c"> Blocks network access</label>
+    <label><input type="radio" name="cks2" value="d"> Disables logging</label>
+    <button onclick="revealAnswer('cks2','B — Prevents writing to root filesystem','If an attacker gets into a container, they cannot write malware to the filesystem. Use emptyDir mounts for /tmp if the app needs write access.')">Show Answer</button>
+    <div class="quiz-answer" id="cks2-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>3. What flag enables encryption of secrets at rest in etcd?</p>
+    <label><input type="radio" name="cks3" value="a"> --encrypt-secrets=true</label>
+    <label><input type="radio" name="cks3" value="b"> --encryption-provider-config</label>
+    <label><input type="radio" name="cks3" value="c"> --etcd-encryption=aes</label>
+    <label><input type="radio" name="cks3" value="d"> --secret-encryption-key</label>
+    <button onclick="revealAnswer('cks3','B — --encryption-provider-config','Pass the path to an EncryptionConfiguration file. It defines which resources to encrypt (secrets) and which encryption algorithm (aescbc, aesgcm, etc.).')">Show Answer</button>
+    <div class="quiz-answer" id="cks3-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>4. gVisor provides security by:</p>
+    <label><input type="radio" name="cks4" value="a"> Encrypting all container traffic</label>
+    <label><input type="radio" name="cks4" value="b"> Running containers in lightweight VMs</label>
+    <label><input type="radio" name="cks4" value="c"> Intercepting syscalls in a user-space kernel so containers never touch the real kernel</label>
+    <label><input type="radio" name="cks4" value="d"> Scanning images for vulnerabilities</label>
+    <button onclick="revealAnswer('cks4','C — User-space kernel intercepts syscalls','gVisor (runsc) creates a sandbox between the container and the host kernel. Even if the app is compromised, the attacker only reaches gVisors fake kernel.')">Show Answer</button>
+    <div class="quiz-answer" id="cks4-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>5. Which tool scans K8s YAML manifests for security issues?</p>
+    <label><input type="radio" name="cks5" value="a"> Trivy</label>
+    <label><input type="radio" name="cks5" value="b"> kubesec</label>
+    <label><input type="radio" name="cks5" value="c"> Falco</label>
+    <label><input type="radio" name="cks5" value="d"> kube-bench</label>
+    <button onclick="revealAnswer('cks5','B — kubesec','kubesec scans YAML manifests for security risks (running as root, missing limits, privileged mode). Trivy scans images. Falco monitors runtime. kube-bench checks CIS compliance.')">Show Answer</button>
+    <div class="quiz-answer" id="cks5-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>6. What does Seccomp do?</p>
+    <label><input type="radio" name="cks6" value="a"> Encrypts secrets</label>
+    <label><input type="radio" name="cks6" value="b"> Filters which Linux syscalls a container can make</label>
+    <label><input type="radio" name="cks6" value="c"> Scans container images</label>
+    <label><input type="radio" name="cks6" value="d"> Manages SSL certificates</label>
+    <button onclick="revealAnswer('cks6','B — Filters syscalls','Seccomp (Secure Computing Mode) blocks dangerous syscalls like ptrace, mount, reboot. Use RuntimeDefault profile as a baseline.')">Show Answer</button>
+    <div class="quiz-answer" id="cks6-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>7. Why use distroless or scratch base images?</p>
+    <label><input type="radio" name="cks7" value="a"> They're faster to build</label>
+    <label><input type="radio" name="cks7" value="b"> Smaller image = fewer packages = fewer CVEs = smaller attack surface</label>
+    <label><input type="radio" name="cks7" value="c"> They have better logging</label>
+    <label><input type="radio" name="cks7" value="d"> They include security tools</label>
+    <button onclick="revealAnswer('cks7','B — Fewer packages = fewer CVEs','A distroless image has no shell, no package manager, no utilities. An attacker who gains code execution has nothing to work with. Ubuntu has 200+ packages with potential CVEs.')">Show Answer</button>
+    <div class="quiz-answer" id="cks7-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>8. What's the purpose of K8s audit logs?</p>
+    <label><input type="radio" name="cks8" value="a"> Track container resource usage</label>
+    <label><input type="radio" name="cks8" value="b"> Record every API request: who did what, when, on which resource</label>
+    <label><input type="radio" name="cks8" value="c"> Monitor network traffic between pods</label>
+    <label><input type="radio" name="cks8" value="d"> Log application errors</label>
+    <button onclick="revealAnswer('cks8','B — Record every API request','Audit logs capture: who (user/SA), what (verb: create/delete), when (timestamp), what resource (pods/secrets), and the request/response body. Essential for forensics.')">Show Answer</button>
+    <div class="quiz-answer" id="cks8-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>9. A Kyverno policy has <code>validationFailureAction: Enforce</code>. What happens when a pod violates it?</p>
+    <label><input type="radio" name="cks9" value="a"> Pod is created with a warning</label>
+    <label><input type="radio" name="cks9" value="b"> Pod creation is blocked</label>
+    <label><input type="radio" name="cks9" value="c"> Pod is created and then deleted</label>
+    <label><input type="radio" name="cks9" value="d"> An alert is sent but pod is created</label>
+    <button onclick="revealAnswer('cks9','B — Pod creation is blocked','Enforce = reject the request. Audit = allow but log the violation. Always start with Audit to find violations, then switch to Enforce when ready.')">Show Answer</button>
+    <div class="quiz-answer" id="cks9-result"></div>
+  </div>
+
+  <div class="quiz-q">
+    <p>10. What is the recommended minimum TLS version for the API server?</p>
+    <label><input type="radio" name="cks10" value="a"> TLS 1.0</label>
+    <label><input type="radio" name="cks10" value="b"> TLS 1.1</label>
+    <label><input type="radio" name="cks10" value="c"> TLS 1.2</label>
+    <label><input type="radio" name="cks10" value="d"> TLS 1.3</label>
+    <button onclick="revealAnswer('cks10','C — TLS 1.2','Set --tls-min-version=VersionTLS12 on the API server. TLS 1.0 and 1.1 have known vulnerabilities. TLS 1.3 is ideal but 1.2 is the minimum baseline.')">Show Answer</button>
+    <div class="quiz-answer" id="cks10-result"></div>
+  </div>
+</div>
+
+<!-- ============================================ -->
+<!-- FINAL SECTION -->
+<!-- ============================================ -->
+<hr class="cert-sep">
+
+<div class="card">
+  <h2>Your Kubestronaut Battle Plan</h2>
+  <div class="arch">
+  Week 1-2:  KCNA (study 1 week, take exam) ─── Entry-level, build confidence
+  Week 3-4:  KCSA (study 1 week, take exam) ─── Security concepts while fresh
+  Week 5-10: CKA  (study 4 weeks, practice labs) ── The foundation
+  Week 11-14: CKAD (study 2 weeks, practice labs) ─ Faster if CKA is solid
+  Week 15-20: CKS  (study 4 weeks, practice labs) ─ The hardest, do last
+
+  Total: ~5 months if you study 1-2 hours/day
+  All 5 must be active simultaneously — plan accordingly!</div>
+
+  <div class="tip"><strong>Speed tips:</strong> (1) Use KodeKloud labs for CKA/CKAD/CKS — hands-on practice is non-negotiable. (2) Bookmark kubernetes.io/docs — it's open during the exam. (3) Master <code>kubectl explain</code> — it shows field documentation inline. (4) Create aliases: <code>alias k=kubectl</code>, <code>export do="--dry-run=client -o yaml"</code>. (5) Practice until you finish mock exams with 30 min to spare.</div>
+</div>
+
+<div class="card">
+  <div class="hashtags">#Kubestronaut #CKA #CKAD #CKS #KCNA #KCSA #Kubernetes #DevOps #SRE #DevOpsMadeSimple</div>
+</div>
+
+<div class="footer">
+  <strong>DevOps Made Simple — Kubestronaut Complete Cheat Sheet</strong><br>
+  By Poojitha A S &nbsp;|&nbsp; April 2026<br>
+  <small>50 quiz questions &bull; 5 certifications &bull; Every chapter covered</small>
+</div>
+
+</div>
+</body>
+</html>
